@@ -91,14 +91,10 @@ body {
 }
 .progress-pct {
   font-size: 12px;
-  color: #c9697a;
+  color: #8b3a47;
   min-width: 28px;
 }
-.progress-pct {
-  font-size: 12px;
-  color: rgba(255,255,255,0.5);
-  min-width: 28px;
-}
+
 
 /* Layout */
 .page {
@@ -380,8 +376,8 @@ body {
   display: block;
   width: 100%;
   padding: 13px;
-  background: #3d2b6b;
-  color: #d9c8ff;
+  background: #c9697a;
+  color: #fff;
   border: none;
   border-radius: var(--radius-sm);
   font-size: 14px;
@@ -393,14 +389,14 @@ body {
   letter-spacing: .04em;
   transition: background .15s;
 }
-.btn-main:hover { background: #6b4fa0; }
+.btn-main:hover { background: #d4808f; }
 .btn-outline {
   display: block;
   width: 100%;
   padding: 11px;
   background: transparent;
-  color: #6b4fa0;
-  border: 1px solid #9b7dd4;
+  color: #c9697a;
+  border: 1px solid #e8a0ac;
   border-radius: var(--radius-sm);
   font-size: 14px;
   font-family: 'Noto Sans TC', sans-serif;
@@ -409,7 +405,7 @@ body {
   cursor: pointer;
   transition: background .15s;
 }
-.btn-outline:hover { background: #f0ebff; }
+.btn-outline:hover { background: #fdeef0; }
 .reset-btn {
   background: none;
   border: 1px solid var(--border-med);
@@ -457,7 +453,7 @@ body {
 }
 .ai-icon {
   width: 40px; height: 40px;
-  background: #f0ebff;
+  background: #fdeef0;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   font-size: 18px;
@@ -484,15 +480,35 @@ body {
   font-size: 12px;
   padding: 4px 10px;
   border-radius: 12px;
-  background: #f8f4ff;
-  color: #6b4fa0;
-  border: 1px solid #c4a8ff;
+  background: #fff5f6;
+  color: #c9697a;
+  border: 1px solid #f5c8ce;
 }
 .ai-desc {
   font-size: 13px;
   color: var(--text-muted);
   line-height: 1.75;
 }
+.book-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 1rem;
+}
+.book-btn {
+  display: block;
+  padding: 11px 8px;
+  background: transparent;
+  color: #c9697a;
+  border: 1px solid #e8a0ac;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-family: 'Noto Sans TC', sans-serif;
+  text-align: center;
+  text-decoration: none;
+  transition: background .15s;
+}
+.book-btn:hover { background: #fdeef0; }
 </style>
 </head>
 <body>
@@ -782,15 +798,9 @@ body {
           <div class="feature"><div class="feature-icon">🔄</div><div class="feature-title">可合併療法</div><div class="feature-desc">輔以乾針治療，加乘修復效果</div></div>
           <div class="feature"><div class="feature-icon">🏥</div><div class="feature-title">門診即可</div><div class="feature-desc">無需住院，當天可正常活動</div></div>
         </div>
-        <div class="btn-group">
-          <a class="btn-main" href="https://drwutcm.blogspot.com/2025/11/blog-post_19.html" target="_blank">了解針刀療程詳細介紹 →</a>
-          <a class="btn-outline" href="https://page.line.me/188qyjon" target="_blank">💬 古亭京都堂 預約</a>
-          <a class="btn-outline" href="https://line.me/R/ti/p/@938fezro" target="_blank">💬 南京京都堂 預約</a>
-        </div>
+        <a class="btn-main" href="https://drwutcm.blogspot.com/2025/11/blog-post_19.html" target="_blank" style="margin-bottom:0">了解針刀療程詳細介紹 →</a>
       </div>
     </div>
-
-    <button class="reset-btn" onclick="resetForm()">重新填寫</button>
 
     <!-- 其他症狀引導 -->
     <div class="ai-section">
@@ -801,7 +811,6 @@ body {
           <div class="ai-subtitle">表單沒有涵蓋的症狀，歡迎直接與診所分享，我們很樂意為你評估。</div>
         </div>
       </div>
-
       <div class="ai-examples">
         <span class="ai-example-tag">蹲下膝蓋會痛</span>
         <span class="ai-example-tag">肩膀舉不起來</span>
@@ -810,14 +819,14 @@ body {
         <span class="ai-example-tag">轉頭脖子卡卡</span>
         <span class="ai-example-tag">髖關節活動受限</span>
       </div>
-
-      <p class="ai-desc">針刀療法不只處理脊椎問題，舉凡運動傷害、關節沾黏、肌腱炎、舊傷代償等都在治療範圍內。如果你有表單以外的症狀，歡迎預約初診，由醫師直接評估是否適合治療。</p>
-
-      <div class="btn-group" style="margin-top:1rem">
-        <a class="btn-main" href="https://page.line.me/188qyjon" target="_blank">💬 古亭京都堂 預約初診</a>
-        <a class="btn-outline" href="https://line.me/R/ti/p/@938fezro" target="_blank">💬 南京京都堂 預約初診</a>
+      <p class="ai-desc">針刀療法不只處理脊椎問題，舉凡運動傷害、關節沾黏、肌腱炎、舊傷代償等都在治療範圍內。歡迎預約初診，由醫師直接評估。</p>
+      <div class="book-row">
+        <a class="book-btn" href="https://page.line.me/188qyjon" target="_blank">💬 古亭京都堂</a>
+        <a class="book-btn" href="https://line.me/R/ti/p/@938fezro" target="_blank">💬 南京京都堂</a>
       </div>
     </div>
+
+    <button class="reset-btn" onclick="resetForm()">重新填寫</button>
   </div>
 
 </main>
