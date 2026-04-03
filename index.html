@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>脊椎疼痛自評表單</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green-dark: #0a4a35;
+  --green-mid: #0f6e56;
+  --green-light: #1d9e75;
+  --green-pale: #e1f5ee;
+  --green-mist: #f0faf6;
+  --amber: #854f0b;
+  --amber-light: #faeeda;
+  --blue: #185fa5;
+  --blue-light: #e6f1fb;
+  --red: #a32d2d;
+  --red-light: #fcebeb;
+  --coral: #993c1d;
+  --coral-light: #faece7;
+  --purple: #534ab7;
+  --purple-light: #eeedfe;
+  --text: #1a1a1a;
+  --text-muted: #5a6470;
+  --text-light: #8a9199;
+  --border: rgba(0,0,0,0.09);
+  --border-med: rgba(0,0,0,0.14);
+  --bg: #f7f9f8;
+  --card: #ffffff;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* Header */
+.site-header {
+  background: var(--green-dark);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.site-header .logo {
+  width: 32px; height: 32px;
+  background: var(--green-light);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+}
+.site-header h1 {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #a8dfc7;
+  letter-spacing: .05em;
+}
+.progress-header {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.progress-track {
+  width: 120px;
+  height: 3px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-track-fill {
+  height: 100%;
+  background: var(--green-light);
+  border-radius: 2px;
+  transition: width .35s ease;
+  width: 0%;
+}
+.progress-pct {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  min-width: 28px;
+}
+
+/* Layout */
+.page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 2.5rem 1rem 2rem;
+}
+.hero-badge {
+  display: inline-block;
+  background: var(--green-pale);
+  color: var(--green-mid);
+  font-size: 12px;
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+  letter-spacing: .05em;
+}
+.hero h2 {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: .75rem;
+  line-height: 1.4;
+}
+.hero p {
+  font-size: 14px;
+  color: var(--text-muted);
+  max-width: 440px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Disclaimer */
+.disclaimer {
+  background: #fffbf0;
+  border: 1px solid #fde68a;
+  border-radius: var(--radius-sm);
+  padding: .75rem 1rem;
+  font-size: 12px;
+  color: #92400e;
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 8px;
+  line-height: 1.5;
+}
+
+/* Section */
+.section { margin-bottom: 2.5rem; }
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+  padding-bottom: .6rem;
+  border-bottom: 1px solid var(--border);
+}
+.section-icon {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px;
+}
+.s-blue  { background: var(--blue-light);   color: var(--blue); }
+.s-amber { background: var(--amber-light);  color: var(--amber); }
+.s-teal  { background: var(--green-pale);   color: var(--green-mid); }
+.s-purple{ background: var(--purple-light); color: var(--purple); }
+.s-coral { background: var(--coral-light);  color: var(--coral); }
+.section-header h3 {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* Question card */
+.q-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.25rem;
+  margin-bottom: .75rem;
+}
+.q-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 9px;
+  border-radius: 4px;
+  margin-bottom: .5rem;
+  letter-spacing: .03em;
+}
+.tag-pain   { background: var(--coral-light);  color: var(--coral); }
+.tag-func   { background: var(--blue-light);   color: var(--blue); }
+.tag-neuro  { background: var(--amber-light);  color: var(--amber); }
+.tag-hist   { background: var(--purple-light); color: var(--purple); }
+.tag-tx     { background: var(--green-pale);   color: var(--green-mid); }
+.q-text {
+  font-size: 14px;
+  color: var(--text);
+  margin-bottom: .75rem;
+  line-height: 1.65;
+}
+
+/* Options */
+.options { display: flex; flex-direction: column; gap: 6px; }
+.opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: .6rem .85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.opt:hover { border-color: var(--border-med); background: #f9fafb; }
+.opt.sel-r { border-color: #378ADD; background: var(--blue-light); }
+.opt.sel-c { border-color: var(--green-light); background: var(--green-pale); }
+.opt input { margin-top: 3px; flex-shrink: 0; accent-color: #378ADD; }
+.opt input[type=checkbox] { accent-color: var(--green-light); }
+.opt-label { font-size: 13px; color: var(--text); line-height: 1.5; }
+.opt-sub { font-size: 11px; color: var(--text-light); margin-top: 2px; display: block; }
+
+/* Submit */
+.submit-wrap { padding-top: .5rem; }
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--green-dark);
+  border: none;
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 500;
+  font-family: 'Noto Sans TC', sans-serif;
+  color: #a8dfc7;
+  cursor: pointer;
+  letter-spacing: .05em;
+  transition: background .15s, opacity .15s;
+}
+.submit-btn:hover:not(:disabled) { background: var(--green-mid); }
+.submit-btn:disabled { opacity: .35; cursor: not-allowed; }
+
+/* ===== RESULT PAGE ===== */
+#result-page { display: none; }
+
+.result-hero {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+.ring-wrap { width: 110px; height: 110px; margin: 0 auto 1rem; position: relative; }
+.ring-wrap svg { width: 100%; height: 100%; }
+.ring-bg { fill: none; stroke: #eef0f2; stroke-width: 10; }
+.ring-fg { fill: none; stroke-width: 10; stroke-linecap: round; transform: rotate(-90deg); transform-origin: 50% 50%; transition: stroke-dashoffset .7s cubic-bezier(.4,0,.2,1); }
+.ring-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; }
+.ring-num { font-size: 26px; font-weight: 500; color: var(--text); line-height: 1; }
+.ring-max { font-size: 11px; color: var(--text-light); }
+.risk-pill {
+  display: inline-block;
+  padding: 5px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: .6rem;
+}
+.result-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: .5rem;
+}
+.result-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.75;
+}
+
+/* Domain bars */
+.domains {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 1.25rem;
+}
+.domain-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: .85rem 1rem;
+}
+.domain-label { font-size: 11px; color: var(--text-light); margin-bottom: 5px; }
+.domain-bar-bg { height: 5px; background: #eef0f2; border-radius: 3px; overflow: hidden; }
+.domain-bar-fill { height: 100%; border-radius: 3px; transition: width .7s ease; }
+.domain-pct { font-size: 13px; font-weight: 500; margin-top: 4px; }
+
+/* Checks */
+.checks-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.checks-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: .75rem; }
+.check-row { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text); line-height: 1.55; margin-bottom: 7px; }
+.check-dot { width: 6px; height: 6px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+
+/* Tags */
+.tags-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.tags-label { font-size: 12px; color: var(--text-light); margin-bottom: .5rem; }
+.tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: .75rem; }
+.tag-tx { font-size: 12px; padding: 3px 10px; border-radius: 12px; background: var(--amber-light); color: var(--amber); border: 1px solid #fac775; }
+.tag-diag { font-size: 12px; padding: 3px 10px; border-radius: 12px; background: var(--coral-light); color: var(--coral); border: 1px solid #f5c4b3; }
+
+/* CTA */
+.cta-card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+}
+.cta-header {
+  background: var(--green-dark);
+  padding: 1.5rem;
+  text-align: center;
+}
+.cta-header h4 {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #a8dfc7;
+  margin-bottom: .4rem;
+}
+.cta-header p { font-size: 13px; color: rgba(168,223,199,.65); line-height: 1.6; }
+.cta-body { background: var(--card); padding: 1.25rem 1.5rem; }
+.cta-intro { font-size: 14px; color: var(--text-muted); line-height: 1.75; margin-bottom: 1.1rem; }
+.highlight-box {
+  background: var(--green-mist);
+  border: 1px solid #9fe1cb;
+  border-radius: var(--radius-sm);
+  padding: .9rem 1.1rem;
+  margin-bottom: 1.1rem;
+}
+.highlight-box strong { font-size: 13px; font-weight: 500; color: #085041; display: block; margin-bottom: .35rem; }
+.highlight-box p { font-size: 12px; color: var(--green-mid); line-height: 1.65; }
+.tx-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 1.25rem;
+}
+.feature {
+  background: #f7f9f8;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: .85rem 1rem;
+}
+.feature-icon { font-size: 18px; margin-bottom: .35rem; }
+.feature-title { font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+.feature-desc { font-size: 11px; color: var(--text-light); line-height: 1.5; }
+.btn-group { display: flex; flex-direction: column; gap: 8px; }
+.btn-main {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  background: var(--green-dark);
+  color: #a8dfc7;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Noto Sans TC', sans-serif;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  letter-spacing: .04em;
+  transition: background .15s;
+}
+.btn-main:hover { background: var(--green-mid); }
+.btn-outline {
+  display: block;
+  width: 100%;
+  padding: 11px;
+  background: transparent;
+  color: var(--green-mid);
+  border: 1px solid var(--green-light);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-family: 'Noto Sans TC', sans-serif;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .15s;
+}
+.btn-outline:hover { background: var(--green-pale); }
+.reset-btn {
+  background: none;
+  border: 1px solid var(--border-med);
+  border-radius: var(--radius-sm);
+  padding: 8px 20px;
+  font-size: 13px;
+  font-family: 'Noto Sans TC', sans-serif;
+  cursor: pointer;
+  color: var(--text-light);
+  transition: background .15s;
+}
+.reset-btn:hover { background: #f0f2f1; }
+
+/* Footer */
+.site-footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 11px;
+  color: var(--text-light);
+  border-top: 1px solid var(--border);
+  margin-top: 1rem;
+  line-height: 1.8;
+}
+
+@media (max-width: 480px) {
+  .hero h2 { font-size: 22px; }
+  .progress-track { width: 80px; }
+  .tx-features { grid-template-columns: 1fr; }
+  .domains { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">🦴</div>
+  <h1>脊椎疼痛自評</h1>
+  <div class="progress-header">
+    <div class="progress-track"><div class="progress-track-fill" id="hdr-fill"></div></div>
+    <span class="progress-pct" id="hdr-pct">0%</span>
+  </div>
+</header>
+
+<main class="page">
+
+  <!-- ===== FORM PAGE ===== -->
+  <div id="form-page">
+    <div class="hero">
+      <span class="hero-badge">免費自我評估</span>
+      <h2>脊椎疼痛自評表單</h2>
+      <p>回答 12 個問題，初步了解你的脊椎健康狀況，並獲得個人化的治療建議。</p>
+    </div>
+
+    <div class="disclaimer">
+      <span>⚠️</span>
+      <span>本問卷為衛教工具，不構成個人醫療診斷或治療建議。如有持續疼痛或神經症狀，請諮詢合格醫療人員。</span>
+    </div>
+
+    <!-- 疼痛描述 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon s-blue">😣</div>
+        <h3>疼痛描述</h3>
+      </div>
+
+      <div class="q-card">
+        <span class="q-tag tag-pain">疼痛位置</span>
+        <p class="q-text">你的脊椎疼痛主要發生在哪個位置？</p>
+        <div class="options">
+          <label class="opt"><input type="radio" name="q1" value="1"><span class="opt-label">頸部（肩頸痠痛）</span></label>
+          <label class="opt"><input type="radio" name="q1" value="1"><span class="opt-label">上背部（兩肩胛之間）</span></label>
+          <label class="opt"><input type="radio" name="q1" value="2"><span class="opt-label">下背部（腰部）</span></label>
+          <label class="opt"><input type="radio" name="q1" value="2"><span class="opt-label">薦椎 / 臀部深處</span></label>
+          <label class="opt"><input type="radio" name="q1" value="0"><span class="opt-label">目前沒有明顯疼痛</span></label>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <span class="q-tag tag-pain">疼痛強度</span>
+        <p class="q-text">疼痛最嚴重時，你會用幾分來形容？（0＝完全不痛，10＝難以忍受）</p>
+        <div class="options">
+          <label class="opt"><input type="radio" name="q2" value="0"><span class="opt-label">0–2 分：幾乎感覺不到</span></label>
+          <label class="opt"><input type="radio" name="q2" value="1"><span class="opt-label">3–4 分：輕微，稍微不舒服</span></label>
+          <label class="opt"><input type="radio" name="q2" value="2"><span class="opt-label">5–6 分：中度，會影響注意力</span></label>
+          <label class="opt"><input type="radio" name="q2" value="3"><span class="opt-label">7–8 分：強烈，很難忽視</span></label>
+          <label class="opt"><input type="radio" name="q2" value="4"><span class="opt-label">9–10 分：劇烈，嚴重影響日常</span></label>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <span class="q-tag tag-pain">持續時間</span>
+        <p class="q-text">這個疼痛已經持續多久了？</p>
+        <div class="options">
+          <label class="opt"><input type="radio" name="q3" value="0"><span class="opt-label">沒有疼痛 / 偶發</span></label>
+          <label class="opt"><input type="radio" name="q3" value="1"><span class="opt-label">少於 4 週（急性）</span></label>
+          <label class="opt"><input type="radio" name="q3" value="2"><span class="opt-label">4–12 週（亞急性）</span></label>
+          <label class="opt"><input type="radio" name="q3" value="3"><span class="opt-label">超過 3 個月（慢性）</span></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- 功能影響 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon s-amber">🚶</div>
+        <h3>功能影響</h3>
+      </div>
+
+      <div class="q-card">
+        <span class="q-tag tag-func">活動能力</span>
+        <p class="q-text">疼痛對你的日常活動影響程度如何？</p>
+        <div class="options">
+          <label class="opt"><input type="radio" name="q4" value="0"><span class="opt-label">完全沒有影響</span></label>
+          <label class="opt"><input type="radio" name="q4" value="1"><span class="opt-label">輕微影響，可以正常生活</span></label>
+          <label class="opt"><input type="radio" name="q4" value="2"><span class="opt-label">中度影響，部分活動需要調整</span></label>
+          <label class="opt"><input type="radio" name="q4" value="3"><span class="opt-label">嚴重影響，有些活動無法進行</span></label>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <span class="q-tag tag-func">睡眠</span>
+        <p class="q-text">疼痛是否影響你的睡眠？</p>
+        <div class="options">
+          <label class="opt"><input type="radio" name="q5" value="0"><span class="opt-label">完全不影響</span></label>
+          <label class="opt"><input type="radio" name="q5" value="1"><span class="opt-label">偶爾因疼痛翻身困難</span></label>
+          <label class="opt"><input type="radio" name="q5" value="2"><span class="opt-label">常因疼痛半夜醒來</span></label>
+          <label class="opt"><input type="radio" name="q5" value="3"><span class="opt-label">夜間疼痛特別明顯（休息痛）</span></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- 神經症狀 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon s-teal">⚡</div>
+        <h3>神經症狀</h3>
+      </div>
+
+      <div class="q-card">
+        <span class="q-tag tag-neuro">放射痛</span>
+        <p class="q-text">你是否有放射性症狀？</p>
+        <div class="options">
+          <label class="opt"><input type="radio" name="q6" value="0"><span class="opt-label">沒有，疼痛只在脊椎局部</span></label>
+          <label class="opt"><input type="radio" name="q6" value="2"><span class="opt-label">手臂或手指有麻木、刺痛感</span></label>
+          <label class="opt"><input type="radio" name="q6" value="2"><span class="opt-label">大腿後側或小腿有麻痛（坐骨神經）</span></label>
+          <label class="opt"><input type="radio" name="q6" value="3"><span class="opt-label">腳底麻木或雙腳無力</span></label>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <span class="q-tag tag-neuro">紅旗症狀</span>
+        <p class="q-text">你是否有以下任何症狀？（需立即就醫）</p>
+        <div class="options">
+          <label class="opt"><input type="radio" name="q7" value="0"><span class="opt-label">以上都沒有</span></label>
+          <label class="opt"><input type="radio" name="q7" value="5"><span class="opt-label">排尿 / 排便控制困難</span></label>
+          <label class="opt"><input type="radio" name="q7" value="5"><span class="opt-label">鼠蹊部或下半身感覺異常（馬尾症候群）</span></label>
+          <label class="opt"><input type="radio" name="q7" value="4"><span class="opt-label">明顯雙腳無力，走路困難</span></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- 影像與診斷 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon s-purple">🔬</div>
+        <h3>影像檢查與診斷</h3>
+      </div>
+
+      <div class="q-card">
+        <span class="q-tag tag-hist">影像檢查</span>
+        <p class="q-text">你是否曾接受過脊椎影像檢查？</p>
+        <div class="options">
+          <label class="opt"><input type="radio" name="q8" value="0"><span class="opt-label">尚未做過任何影像檢查</span></label>
+          <label class="opt"><input type="radio" name="q8" value="1"><span class="opt-label">做過 X 光（一般平片）</span></label>
+          <label class="opt"><input type="radio" name="q8" value="2"><span class="opt-label">做過 CT（電腦斷層）</span></label>
+          <label class="opt"><input type="radio" name="q8" value="2"><span class="opt-label">做過 MRI（核磁共振）</span></label>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <span class="q-tag tag-hist">確診病況</span>
+        <p class="q-text">醫師是否曾告知你有以下診斷？（可複選）</p>
+        <div class="options">
+          <label class="opt"><input type="checkbox" name="q9" value="none" data-excl="true"><span class="opt-label">沒有，尚未確診 / 不清楚</span></label>
+          <label class="opt"><input type="checkbox" name="q9" value="disc"><span class="opt-label">椎間盤突出（Herniated Disc）<span class="opt-sub">頸椎或腰椎椎間盤壓迫神經</span></span></label>
+          <label class="opt"><input type="checkbox" name="q9" value="spondy"><span class="opt-label">脊椎滑脫（Spondylolisthesis）<span class="opt-sub">脊椎骨節前後移位</span></span></label>
+          <label class="opt"><input type="checkbox" name="q9" value="stenosis"><span class="opt-label">脊椎管狹窄（Spinal Stenosis）</span></label>
+          <label class="opt"><input type="checkbox" name="q9" value="degen"><span class="opt-label">退化性脊椎炎 / 骨刺</span></label>
+          <label class="opt"><input type="checkbox" name="q9" value="other"><span class="opt-label">其他脊椎相關診斷</span></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- 過去治療史 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon s-coral">💉</div>
+        <h3>過去治療史</h3>
+      </div>
+
+      <div class="q-card">
+        <span class="q-tag tag-tx">曾接受的治療</span>
+        <p class="q-text">你過去是否接受過以下任何治療？（可複選）</p>
+        <div class="options">
+          <label class="opt"><input type="checkbox" name="q10" value="none" data-excl="true"><span class="opt-label">沒有接受過任何治療</span></label>
+          <label class="opt"><input type="checkbox" name="q10" value="prp"><span class="opt-label">PRP 高濃度血小板注射<span class="opt-sub">利用自體血液濃縮後注射，促進修復</span></span></label>
+          <label class="opt"><input type="checkbox" name="q10" value="glucose"><span class="opt-label">葡萄糖注射（增生療法）<span class="opt-sub">刺激韌帶與肌腱自我修復</span></span></label>
+          <label class="opt"><input type="checkbox" name="q10" value="rehab"><span class="opt-label">復健 / 牽引拉腰治療<span class="opt-sub">物理治療、熱敷電療、腰椎牽引</span></span></label>
+          <label class="opt"><input type="checkbox" name="q10" value="surgery"><span class="opt-label">脊椎手術<span class="opt-sub">椎間盤切除、脊椎融合等</span></span></label>
+          <label class="opt"><input type="checkbox" name="q10" value="steroid"><span class="opt-label">類固醇注射 / 硬膜外注射</span></label>
+          <label class="opt"><input type="checkbox" name="q10" value="chiro"><span class="opt-label">整脊 / 徒手治療</span></label>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <span class="q-tag tag-tx">治療效果</span>
+        <p class="q-text">過去的治療效果如何？</p>
+        <div class="options">
+          <label class="opt"><input type="radio" name="q11" value="0"><span class="opt-label">尚未接受過任何治療</span></label>
+          <label class="opt"><input type="radio" name="q11" value="0"><span class="opt-label">效果良好，症狀明顯改善</span></label>
+          <label class="opt"><input type="radio" name="q11" value="1"><span class="opt-label">暫時改善，但症狀反覆復發</span></label>
+          <label class="opt"><input type="radio" name="q11" value="2"><span class="opt-label">改善有限，效果不明顯</span></label>
+          <label class="opt"><input type="radio" name="q11" value="3"><span class="opt-label">完全沒有效果或治療後更不舒服</span></label>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <span class="q-tag tag-hist">職業與生活</span>
+        <p class="q-text">你的工作或生活習慣屬於哪一類？</p>
+        <div class="options">
+          <label class="opt"><input type="radio" name="q12" value="0"><span class="opt-label">規律運動，工作以站立或活動為主</span></label>
+          <label class="opt"><input type="radio" name="q12" value="1"><span class="opt-label">一般辦公，偶爾運動</span></label>
+          <label class="opt"><input type="radio" name="q12" value="2"><span class="opt-label">長時間久坐，鮮少運動</span></label>
+          <label class="opt"><input type="radio" name="q12" value="2"><span class="opt-label">需要重複搬重物或彎腰的工作</span></label>
+        </div>
+      </div>
+    </div>
+
+    <div class="submit-wrap">
+      <button class="submit-btn" id="submit-btn" disabled onclick="showResult()">查看我的評估結果 →</button>
+    </div>
+  </div>
+
+  <!-- ===== RESULT PAGE ===== -->
+  <div id="result-page">
+
+    <div class="result-hero">
+      <div class="ring-wrap">
+        <svg viewBox="0 0 100 100">
+          <circle class="ring-bg" cx="50" cy="50" r="40"/>
+          <circle class="ring-fg" id="ring-fg" cx="50" cy="50" r="40" stroke-dasharray="251" stroke-dashoffset="251"/>
+        </svg>
+        <div class="ring-center">
+          <div class="ring-num" id="ring-num">0</div>
+          <div class="ring-max">分</div>
+        </div>
+      </div>
+      <div id="risk-pill" class="risk-pill"></div>
+      <div class="result-title" id="result-title"></div>
+      <p class="result-desc" id="result-desc"></p>
+    </div>
+
+    <div class="domains">
+      <div class="domain-card">
+        <div class="domain-label">疼痛程度</div>
+        <div class="domain-bar-bg"><div class="domain-bar-fill" id="d1" style="background:#378ADD;width:0%"></div></div>
+        <div class="domain-pct" id="d1p" style="color:#185fa5"></div>
+      </div>
+      <div class="domain-card">
+        <div class="domain-label">功能影響</div>
+        <div class="domain-bar-bg"><div class="domain-bar-fill" id="d2" style="background:#EF9F27;width:0%"></div></div>
+        <div class="domain-pct" id="d2p" style="color:#854f0b"></div>
+      </div>
+      <div class="domain-card">
+        <div class="domain-label">神經症狀</div>
+        <div class="domain-bar-bg"><div class="domain-bar-fill" id="d3" style="background:#1D9E75;width:0%"></div></div>
+        <div class="domain-pct" id="d3p" style="color:#0f6e56"></div>
+      </div>
+      <div class="domain-card">
+        <div class="domain-label">治療反應</div>
+        <div class="domain-bar-bg"><div class="domain-bar-fill" id="d4" style="background:#7F77DD;width:0%"></div></div>
+        <div class="domain-pct" id="d4p" style="color:#534ab7"></div>
+      </div>
+    </div>
+
+    <div class="checks-card">
+      <div class="checks-title">建議行動</div>
+      <div id="checks"></div>
+    </div>
+
+    <div class="tags-card" id="tags-card" style="display:none">
+      <div id="tx-section" style="display:none">
+        <div class="tags-label">曾接受的治療</div>
+        <div class="tag-row" id="tx-tags"></div>
+      </div>
+      <div id="diag-section" style="display:none">
+        <div class="tags-label">已知診斷</div>
+        <div class="tag-row" id="diag-tags"></div>
+      </div>
+    </div>
+
+    <div class="cta-card">
+      <div class="cta-header">
+        <h4>針刀微創療法</h4>
+        <p>結合傳統針灸與現代微創技術，精準處理脊椎沾黏與軟組織問題</p>
+      </div>
+      <div class="cta-body">
+        <p class="cta-intro" id="cta-intro"></p>
+        <div class="highlight-box">
+          <strong>什麼是針刀療法？</strong>
+          <p>針刀是直徑僅 0.8mm 的微創工具，兼具針灸的「針」與手術刀的「刀」。在局部麻醉下精準鬆解脊椎周圍的沾黏筋膜、增生骨刺壓迫點，以及長期代償所形成的緊繃索狀物——對慢性疼痛、保守治療效果不佳者特別有幫助。</p>
+        </div>
+        <div class="tx-features">
+          <div class="feature"><div class="feature-icon">🎯</div><div class="feature-title">精準定位</div><div class="feature-desc">超音波導引下操作，直接處理病灶點</div></div>
+          <div class="feature"><div class="feature-icon">⚡</div><div class="feature-title">快速見效</div><div class="feature-desc">多數患者 1–3 次後症狀明顯改善</div></div>
+          <div class="feature"><div class="feature-icon">🔄</div><div class="feature-title">可合併療法</div><div class="feature-desc">可搭配 PRP、葡萄糖注射加乘效果</div></div>
+          <div class="feature"><div class="feature-icon">🏥</div><div class="feature-title">門診即可</div><div class="feature-desc">無需住院，當天可正常活動</div></div>
+        </div>
+        <div class="btn-group">
+          <a class="btn-main" href="#療程介紹">了解針刀療程詳細介紹 →</a>
+          <a class="btn-outline" href="#預約">立即預約初診諮詢 →</a>
+        </div>
+      </div>
+    </div>
+
+    <button class="reset-btn" onclick="resetForm()">重新填寫</button>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <p>本問卷僅供衛教參考，不構成個人醫療診斷或治療建議。</p>
+  <p>實際治療請諮詢合格醫療人員。</p>
+</footer>
+
+<script>
+const radioQs = ['q1','q2','q3','q4','q5','q6','q7','q8','q11','q12'];
+const answered = {};
+const checked = { q9:[], q10:[] };
+const TOTAL_Q = 12;
+
+const txMap = { prp:'PRP注射', glucose:'葡萄糖增生', rehab:'復健牽引', surgery:'脊椎手術', steroid:'類固醇注射', chiro:'整脊治療' };
+const diagMap = { disc:'椎間盤突出', spondy:'脊椎滑脫', stenosis:'脊椎管狹窄', degen:'退化性脊椎炎', other:'其他診斷' };
+
+function countDone() {
+  let n = radioQs.filter(q => answered[q] !== undefined).length;
+  if (checked.q9.length > 0) n++;
+  if (checked.q10.length > 0) n++;
+  return n;
+}
+
+function updateProgress() {
+  const n = countDone();
+  const pct = Math.round(n / TOTAL_Q * 100);
+  document.getElementById('hdr-fill').style.width = pct + '%';
+  document.getElementById('hdr-pct').textContent = pct + '%';
+  document.getElementById('submit-btn').disabled = n < TOTAL_Q;
+}
+
+document.querySelectorAll('input[type=radio]').forEach(el => {
+  el.addEventListener('change', function() {
+    answered[this.name] = parseInt(this.value);
+    document.querySelectorAll(`[name="${this.name}"]`).forEach(r =>
+      r.closest('.opt').classList.remove('sel-r'));
+    this.closest('.opt').classList.add('sel-r');
+    updateProgress();
+  });
+});
+
+document.querySelectorAll('input[type=checkbox]').forEach(el => {
+  el.addEventListener('change', function() {
+    const grp = this.name;
+    const isExcl = this.dataset.excl === 'true';
+    if (isExcl && this.checked) {
+      document.querySelectorAll(`[name="${grp}"]`).forEach(c => {
+        if (c !== this) { c.checked = false; c.closest('.opt').classList.remove('sel-c'); }
+      });
+      checked[grp] = [this.value];
+    } else {
+      if (this.checked) {
+        const excl = document.querySelector(`[name="${grp}"][data-excl=true]`);
+        if (excl) { excl.checked = false; excl.closest('.opt').classList.remove('sel-c'); }
+        checked[grp] = checked[grp].filter(v => v !== 'none');
+        if (!checked[grp].includes(this.value)) checked[grp].push(this.value);
+      } else {
+        checked[grp] = checked[grp].filter(v => v !== this.value);
+      }
+    }
+    this.closest('.opt').classList.toggle('sel-c', this.checked);
+    updateProgress();
+  });
+});
+
+function showResult() {
+  const s1 = (answered.q1||0)+(answered.q2||0)+(answered.q3||0);
+  const s2 = (answered.q4||0)+(answered.q5||0);
+  const s3 = (answered.q6||0)+(answered.q7||0);
+  const s4 = (answered.q8||0)+(answered.q11||0)+(answered.q12||0);
+  const total = s1+s2+s3+s4;
+
+  const surgeryDone = checked.q10.includes('surgery');
+  const chronicFail = (answered.q11||0) >= 2;
+  const redFlag = (answered.q7||0) >= 4;
+  const hasDiag = checked.q9.filter(v => v !== 'none');
+  const hasTx = checked.q10.filter(v => v !== 'none');
+
+  let rC, rBg, rLabel, title, desc, checks, ctaIntro, ringStroke;
+
+  if (redFlag) {
+    rC='#A32D2D'; rBg='#FCEBEB'; rLabel='🔴 請立即就醫'; ringStroke='#E24B4A';
+    title='偵測到可能的嚴重神經症狀';
+    desc='你的回答中出現了需要立即評估的紅旗症狀。馬尾症候群或嚴重脊髓壓迫若未及時處理，可能造成永久性損傷。請盡速前往骨科或神經外科急診。';
+    checks=['立即前往骨科或神經外科急診','告知醫師排尿／排便控制困難的狀況','帶齊之前的影像報告一起就診','不要等候常規門診，應掛急診評估'];
+    ctaIntro='在排除緊急神經症狀後，若慢性脊椎疼痛長期無法根治，針刀療法可作為下一步的選擇。';
+  } else if (total <= 6) {
+    rC='#0F6E56'; rBg='#E1F5EE'; rLabel='🟢 低風險'; ringStroke='#1D9E75';
+    title='脊椎狀況良好，維持保健習慣';
+    desc='目前沒有明顯的脊椎問題。建議持續維持良好姿勢與適度運動，定期自我評估。';
+    checks=['每天做 10–15 分鐘核心肌群訓練','工作每 45 分鐘起身活動 5 分鐘','保持理想體重，減輕脊椎負擔','如日後出現症狀可隨時回來重新評估'];
+    ctaIntro='目前你的脊椎狀況良好，不需要積極治療。若未來出現慢性疼痛，針刀療法是一個安全有效的選項。歡迎先了解療程內容。';
+  } else if (total <= 14) {
+    rC='#854F0B'; rBg='#FAEEDA'; rLabel='🟡 中低風險'; ringStroke='#EF9F27';
+    title='輕中度脊椎不適，建議積極保健';
+    desc='你有明顯的脊椎不適，透過改善姿勢、運動和針對性治療可有效緩解。若保守治療 4–6 週無明顯改善，建議進一步評估。';
+    checks=['進行物理治療評估','改善工作座姿與人體工學','考慮影像學檢查確認病況','若症狀持續，討論針刀治療的可行性'];
+    ctaIntro='對於中度脊椎不適，針刀療法能精準處理肌筋膜沾黏與激痛點，通常比單純復健見效更快，適合你現在的狀況評估。';
+  } else if (total <= 22) {
+    rC='#185FA5'; rBg='#E6F1FB'; rLabel='🟠 中高風險'; ringStroke='#378ADD';
+    title='明顯脊椎問題，需專業治療介入';
+    desc='你的脊椎問題已對日常生活造成明顯影響。' + (chronicFail ? '過去的治療效果有限，需要尋求更積極的治療方式。' : '建議盡快諮詢專科醫師，進行影像學評估。');
+    checks=['兩週內安排骨科或復健科門診','配合 MRI 或 CT 確認病灶位置','評估是否適合針刀或注射治療','暫時避免加重疼痛的動作'];
+    ctaIntro = '你的狀況顯示已有結構性問題' + (hasDiag.length ? `（${hasDiag.map(d=>diagMap[d]||d).join('、')}）` : '') + '，針刀療法能精準鬆解沾黏組織、恢復脊椎活動度，是' + (chronicFail ? '保守治療無效後的理想選擇' : '此階段很適合的治療方案') + '。';
+  } else {
+    rC='#A32D2D'; rBg='#FCEBEB'; rLabel='🔴 高風險'; ringStroke='#E24B4A';
+    title='嚴重脊椎問題，需要積極治療';
+    desc='你的脊椎問題嚴重影響生活品質。' + (surgeryDone ? '即使已接受手術，症狀仍持續，可能存在術後沾黏或鄰近節段代償問題。' : chronicFail ? '且過去治療效果有限，需要更積極的治療策略。' : '需要全面評估並制定系統性治療計畫。');
+    checks=['本週內安排專科門診評估','攜帶所有影像報告就診',(surgeryDone?'告知術後症狀改變情況':'配合完整影像學檢查'),'討論針刀或進階注射療法的可行性'];
+    ctaIntro = surgeryDone ? '你已接受手術但症狀仍持續——術後組織沾黏是常見原因，針刀療法特別擅長處理術後沾黏問題，值得與醫師討論。' : (chronicFail ? '你經多種治療效果不佳，顯示有深層結構性問題需要更精準的處理，針刀療法是此類情況的有效選項。' : '你的情況需要積極介入，針刀療法結合注射治療能從根本處理脊椎沾黏與壓迫問題。');
+  }
+
+  document.getElementById('ring-num').textContent = total;
+  const ring = document.getElementById('ring-fg');
+  ring.style.stroke = ringStroke;
+  setTimeout(() => { ring.style.strokeDashoffset = 251 - Math.round(251 * Math.min(total,28)/28); }, 100);
+
+  const pill = document.getElementById('risk-pill');
+  pill.textContent = rLabel;
+  pill.style.cssText = `background:${rBg};color:${rC};display:inline-block;padding:5px 16px;border-radius:20px;font-size:13px;font-weight:500;margin-bottom:.6rem`;
+
+  document.getElementById('result-title').textContent = title;
+  document.getElementById('result-desc').textContent = desc;
+  document.getElementById('cta-intro').textContent = ctaIntro;
+  document.getElementById('checks').innerHTML = checks.map(c =>
+    `<div class="check-row"><div class="check-dot" style="background:${rC}"></div><span>${c}</span></div>`
+  ).join('');
+
+  function setBar(id, val, max, color) {
+    const p = Math.round(Math.min(val,max)/max*100);
+    document.getElementById(id).style.width = p + '%';
+    document.getElementById(id+'p').textContent = p + '%';
+  }
+  setBar('d1',s1,10); setBar('d2',s2,7); setBar('d3',s3,8); setBar('d4',s4,7);
+
+  const txList = hasTx;
+  const diagList = hasDiag;
+  const tagsCard = document.getElementById('tags-card');
+  if (txList.length || diagList.length) {
+    tagsCard.style.display = 'block';
+    if (txList.length) {
+      document.getElementById('tx-section').style.display = 'block';
+      document.getElementById('tx-tags').innerHTML = txList.map(v => `<span class="tag-tx">${txMap[v]||v}</span>`).join('');
+    }
+    if (diagList.length) {
+      document.getElementById('diag-section').style.display = 'block';
+      document.getElementById('diag-tags').innerHTML = diagList.map(v => `<span class="tag-diag">${diagMap[v]||v}</span>`).join('');
+    }
+  }
+
+  document.getElementById('form-page').style.display = 'none';
+  document.getElementById('result-page').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function resetForm() {
+  radioQs.forEach(q => delete answered[q]);
+  checked.q9 = []; checked.q10 = [];
+  document.querySelectorAll('.sel-r,.sel-c').forEach(el => el.classList.remove('sel-r','sel-c'));
+  document.querySelectorAll('input[type=radio],input[type=checkbox]').forEach(el => el.checked = false);
+  ['tags-card','tx-section','diag-section'].forEach(id => { const el=document.getElementById(id); if(el) el.style.display='none'; });
+  updateProgress();
+  document.getElementById('result-page').style.display = 'none';
+  document.getElementById('form-page').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
