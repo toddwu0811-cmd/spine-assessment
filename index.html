@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>脊椎疼痛自評表單</title>
+<title>身體負擔自評表單</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -515,7 +515,7 @@ body {
 
 <header class="site-header">
   <div class="logo">🦴</div>
-  <h1>脊椎疼痛自評</h1>
+  <h1>脊椎負擔自評</h1>
   <div class="progress-header">
     <div class="progress-track"><div class="progress-track-fill" id="hdr-fill"></div></div>
     <span class="progress-pct" id="hdr-pct">0%</span>
@@ -528,8 +528,8 @@ body {
   <div id="form-page">
     <div class="hero">
       <span class="hero-badge">免費自我評估</span>
-      <h2>脊椎疼痛自評表單</h2>
-      <p>回答 12 個問題，初步了解你的脊椎健康狀況，並獲得個人化的治療建議。</p>
+      <h2>脊椎負擔自評表單</h2>
+      <p>回答 12 個問題，了解肩頸、腰背與睡眠問題背後的成因，有沒有潛在椎間盤突出、骨刺增生的風險，以及複合式針傷療程（針刀、乾針）是否適合您。</p>
     </div>
 
     <div class="disclaimer">
@@ -537,46 +537,46 @@ body {
       <span>本問卷為衛教工具，不構成個人醫療診斷或治療建議。如有持續疼痛或神經症狀，請諮詢合格醫療人員。</span>
     </div>
 
-    <!-- 疼痛描述 -->
+    <!-- 身體不適 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon s-blue">😣</div>
-        <h3>疼痛描述</h3>
+        <h3>身體不適</h3>
       </div>
 
       <div class="q-card">
-        <span class="q-tag tag-pain">疼痛位置</span>
-        <p class="q-text">你的脊椎疼痛發生在哪些位置？（可複選）</p>
+        <span class="q-tag tag-pain">不舒服的位置</span>
+        <p class="q-text">你最近身體哪些地方讓你困擾？（可複選）</p>
         <div class="options">
-          <label class="opt"><input type="checkbox" name="q1" value="none" data-excl="true"><span class="opt-label">目前沒有明顯疼痛</span></label>
-          <label class="opt"><input type="checkbox" name="q1" value="neck"><span class="opt-label">頸部<span class="opt-sub">肩頸痠痛、低頭久了就不舒服</span></span></label>
-          <label class="opt"><input type="checkbox" name="q1" value="upper"><span class="opt-label">上背部<span class="opt-sub">兩側肩胛骨之間緊繃或痠痛</span></span></label>
-          <label class="opt"><input type="checkbox" name="q1" value="lower"><span class="opt-label">下背部（腰部）<span class="opt-sub">久坐久站後腰痠、彎腰會痛</span></span></label>
-          <label class="opt"><input type="checkbox" name="q1" value="sacrum"><span class="opt-label">薦椎 / 臀部深處<span class="opt-sub">坐下時臀部深層有壓迫感或悶痛</span></span></label>
+          <label class="opt"><input type="checkbox" name="q1" value="none" data-excl="true"><span class="opt-label">目前沒有明顯不適</span></label>
+          <label class="opt"><input type="checkbox" name="q1" value="neck"><span class="opt-label">頸部 / 肩頸<span class="opt-sub">低頭滑手機、看螢幕後就緊繃、落枕反覆發生、肩膀總是頂著</span></span></label>
+          <label class="opt"><input type="checkbox" name="q1" value="upper"><span class="opt-label">上背部<span class="opt-sub">兩側肩胛骨之間悶痛、長時間坐著背部像被壓著</span></span></label>
+          <label class="opt"><input type="checkbox" name="q1" value="lower"><span class="opt-label">下背部（腰部）<span class="opt-sub">久坐或久站後腰痠、彎腰搬東西會痛、站起來要緩一下</span></span></label>
+          <label class="opt"><input type="checkbox" name="q1" value="sacrum"><span class="opt-sub">薦椎 / 臀部深處<span class="opt-sub">坐著時臀部深層悶痛、坐久了換腳才舒服</span></span></label>
         </div>
       </div>
 
       <div class="q-card">
-        <span class="q-tag tag-pain">疼痛強度</span>
-        <p class="q-text">疼痛最嚴重時，你會用幾分來形容？（0＝完全不痛，10＝難以忍受）</p>
+        <span class="q-tag tag-pain">不適程度</span>
+        <p class="q-text">這些不舒服最嚴重時，你會用幾分來形容？（0＝完全不影響，10＝難以忍受）</p>
         <div class="options">
-          <label class="opt"><input type="radio" name="q2" value="0"><span class="opt-label">0–2 分：幾乎感覺不到</span></label>
-          <label class="opt"><input type="radio" name="q2" value="1"><span class="opt-label">3–4 分：輕微，稍微不舒服</span></label>
-          <label class="opt"><input type="radio" name="q2" value="2"><span class="opt-label">5–6 分：中度，會影響注意力</span></label>
-          <label class="opt"><input type="radio" name="q2" value="3"><span class="opt-label">7–8 分：強烈，很難忽視</span></label>
-          <label class="opt"><input type="radio" name="q2" value="4"><span class="opt-label">9–10 分：劇烈，嚴重影響日常</span></label>
+          <label class="opt"><input type="radio" name="q2" value="0"><span class="opt-label">0–2 分：幾乎感覺不到，偶爾意識到而已</span></label>
+          <label class="opt"><input type="radio" name="q2" value="1"><span class="opt-label">3–4 分：輕微，會注意到但還好</span></label>
+          <label class="opt"><input type="radio" name="q2" value="2"><span class="opt-label">5–6 分：中度，會影響注意力或工作效率</span></label>
+          <label class="opt"><input type="radio" name="q2" value="3"><span class="opt-label">7–8 分：強烈，很難忽視、需要想辦法緩解</span></label>
+          <label class="opt"><input type="radio" name="q2" value="4"><span class="opt-label">9–10 分：劇烈，嚴重影響日常生活</span></label>
         </div>
       </div>
 
       <div class="q-card">
         <span class="q-tag tag-pain">持續時間</span>
-        <p class="q-text">這個疼痛的狀況最接近哪一種？</p>
+        <p class="q-text">這個狀況大概持續多久了？</p>
         <div class="options">
-          <label class="opt"><input type="radio" name="q3" value="0"><span class="opt-label">沒有疼痛</span></label>
-          <label class="opt"><input type="radio" name="q3" value="1"><span class="opt-label">最近才開始，不超過一個月<span class="opt-sub">可能是急性扭傷或姿勢不良造成</span></span></label>
-          <label class="opt"><input type="radio" name="q3" value="2"><span class="opt-label">斷斷續續痛了 1–3 個月<span class="opt-sub">好了又犯、時好時壞</span></span></label>
-          <label class="opt"><input type="radio" name="q3" value="2"><span class="opt-label">特定情境才會痛，但這狀況持續超過一個月<span class="opt-sub">例如：壓力大、久坐、天氣變化才發作</span></span></label>
-          <label class="opt"><input type="radio" name="q3" value="3"><span class="opt-label">長期慢性疼痛，超過三個月<span class="opt-sub">幾乎每天都有不適感</span></span></label>
+          <label class="opt"><input type="radio" name="q3" value="0"><span class="opt-label">沒有不適</span></label>
+          <label class="opt"><input type="radio" name="q3" value="1"><span class="opt-label">最近才開始，不超過一個月<span class="opt-sub">可能是姿勢不良、突然增加工作量或急性扭傷造成</span></span></label>
+          <label class="opt"><input type="radio" name="q3" value="2"><span class="opt-label">斷斷續續，好了又犯<span class="opt-sub">1–3 個月內反覆出現，沒有完全好過</span></span></label>
+          <label class="opt"><input type="radio" name="q3" value="2"><span class="opt-label">特定情況就發作，已超過一個月<span class="opt-sub">例如：壓力大、加班、天氣變化、長途開車後就不舒服</span></span></label>
+          <label class="opt"><input type="radio" name="q3" value="3"><span class="opt-label">長期慢性不適，超過三個月<span class="opt-sub">幾乎每天都有，已經「習慣了」但沒有真正消失</span></span></label>
         </div>
       </div>
     </div>
@@ -585,28 +585,28 @@ body {
     <div class="section">
       <div class="section-header">
         <div class="section-icon s-amber">🚶</div>
-        <h3>功能影響</h3>
+        <h3>生活影響</h3>
       </div>
 
       <div class="q-card">
         <span class="q-tag tag-func">日常影響</span>
-        <p class="q-text">疼痛對你日常生活的影響最接近哪一種？</p>
+        <p class="q-text">這些不舒服對你日常生活的影響最接近哪一種？</p>
         <div class="options">
           <label class="opt"><input type="radio" name="q4" value="0"><span class="opt-label">完全沒有影響<span class="opt-sub">做任何事都不受影響</span></span></label>
-          <label class="opt"><input type="radio" name="q4" value="1"><span class="opt-label">偶爾分心，但還是能完成工作或日常<span class="opt-sub">例如：上班時偶爾意識到不舒服，但不影響做事</span></span></label>
-          <label class="opt"><input type="radio" name="q4" value="2"><span class="opt-label">明顯影響，需要特別注意或調整姿勢<span class="opt-sub">例如：必須提醒自己換姿勢、某些動作會加劇疼痛</span></span></label>
-          <label class="opt"><input type="radio" name="q4" value="3"><span class="opt-label">嚴重影響，有些事做不了<span class="opt-sub">例如：無法久坐開車、無法搬東西、走路需要停下來休息</span></span></label>
+          <label class="opt"><input type="radio" name="q4" value="1"><span class="opt-label">偶爾意識到，但還是能完成工作<span class="opt-sub">上班時偶爾分心、下班後覺得身體比較累，但隔天還好</span></span></label>
+          <label class="opt"><input type="radio" name="q4" value="2"><span class="opt-label">明顯影響，需要特別注意或調整<span class="opt-sub">必須頻繁換姿勢、提早離開座位、某些動作會讓不適加重</span></span></label>
+          <label class="opt"><input type="radio" name="q4" value="3"><span class="opt-label">嚴重影響，有些事做不了<span class="opt-sub">無法久坐開車、無法搬東西、走路或站立一段時間就需要休息</span></span></label>
         </div>
       </div>
 
       <div class="q-card">
-        <span class="q-tag tag-func">睡眠</span>
-        <p class="q-text">疼痛是否影響你的睡眠？</p>
+        <span class="q-tag tag-func">睡眠品質</span>
+        <p class="q-text">你的睡眠狀況最近如何？</p>
         <div class="options">
-          <label class="opt"><input type="radio" name="q5" value="0"><span class="opt-label">完全不影響</span></label>
-          <label class="opt"><input type="radio" name="q5" value="1"><span class="opt-label">偶爾因疼痛翻身困難</span></label>
-          <label class="opt"><input type="radio" name="q5" value="2"><span class="opt-label">常因疼痛半夜醒來</span></label>
-          <label class="opt"><input type="radio" name="q5" value="3"><span class="opt-label">夜間疼痛特別明顯（躺下來反而更痛）</span></label>
+          <label class="opt"><input type="radio" name="q5" value="0"><span class="opt-label">睡得還不錯，沒有特別困擾</span></label>
+          <label class="opt"><input type="radio" name="q5" value="1"><span class="opt-label">偶爾睡不好、翻身困難，或起床時身體仍然緊繃<span class="opt-sub">不一定是疼痛，但感覺沒有真正休息到</span></span></label>
+          <label class="opt"><input type="radio" name="q5" value="2"><span class="opt-label">常常入睡困難、淺眠或半夜易醒<span class="opt-sub">身體緊繃或不舒服影響放鬆入睡</span></span></label>
+          <label class="opt"><input type="radio" name="q5" value="3"><span class="opt-label">躺下來反而更不舒服，夜間症狀特別明顯<span class="opt-sub">平躺或側躺某些姿勢會加重疼痛或麻感</span></span></label>
         </div>
       </div>
     </div>
@@ -619,13 +619,13 @@ body {
       </div>
 
       <div class="q-card">
-        <span class="q-tag tag-neuro">疼痛是否會「跑」到其他地方？</span>
-        <p class="q-text">疼痛有沒有從背部或脖子「延伸」到手或腳？這種從脊椎往四肢延伸的感覺叫做放射痛，是神經被壓迫的訊號。</p>
+        <span class="q-tag tag-neuro">不適是否往外擴散？</span>
+        <p class="q-text">不舒服有沒有從頸部或腰背「延伸」到手或腳？這種往四肢延伸的感覺叫做放射痛，是神經受到壓迫的訊號。</p>
         <div class="options">
-          <label class="opt"><input type="radio" name="q6" value="0"><span class="opt-label">沒有，疼痛只在原本的位置<span class="opt-sub">不會擴散到手臂或腿部</span></span></label>
-          <label class="opt"><input type="radio" name="q6" value="2"><span class="opt-label">手臂、手肘或手指有麻木、刺痛、電到的感覺<span class="opt-sub">常見於頸椎神經壓迫</span></span></label>
-          <label class="opt"><input type="radio" name="q6" value="2"><span class="opt-label">大腿後側、小腿或腳踝有麻痛、像電流的感覺<span class="opt-sub">俗稱坐骨神經痛，常見於腰椎壓迫</span></span></label>
-          <label class="opt"><input type="radio" name="q6" value="3"><span class="opt-label">腳底麻木、雙腳踩地無力、走路容易絆倒<span class="opt-sub">神經壓迫較嚴重的表現</span></span></label>
+          <label class="opt"><input type="radio" name="q6" value="0"><span class="opt-label">沒有，不舒服只在原本的位置<span class="opt-sub">不會延伸到手臂或腿部</span></span></label>
+          <label class="opt"><input type="radio" name="q6" value="2"><span class="opt-label">手臂、手肘或手指有麻木、刺痛、電到的感覺<span class="opt-sub">常見於頸椎神經壓迫；有時打電腦手指會麻</span></span></label>
+          <label class="opt"><input type="radio" name="q6" value="2"><span class="opt-label">大腿後側、小腿或腳踝有麻痛、像電流的感覺<span class="opt-sub">俗稱坐骨神經痛，久坐後特別容易發作</span></span></label>
+          <label class="opt"><input type="radio" name="q6" value="3"><span class="opt-label">腳底麻木、雙腳踩地無力、走路容易絆倒<span class="opt-sub">神經壓迫較嚴重的表現，需盡快就醫評估</span></span></label>
         </div>
       </div>
 
@@ -633,7 +633,7 @@ body {
         <span class="q-tag tag-neuro">紅旗症狀</span>
         <p class="q-text">你是否有以下任何症狀？（需立即就醫）</p>
         <div class="options">
-          <label class="opt"><input type="radio" name="q7" value="0"><span class="opt-label">以上都沒有</span></label>
+          <label class="opt"><input type="radio" name="q7" value="0"><span class="opt-label">以下都沒有</span></label>
           <label class="opt"><input type="radio" name="q7" value="5"><span class="opt-label">排尿 / 排便控制困難</span></label>
           <label class="opt"><input type="radio" name="q7" value="5"><span class="opt-label">鼠蹊部或下半身感覺異常（馬尾症候群）</span></label>
           <label class="opt"><input type="radio" name="q7" value="4"><span class="opt-label">明顯雙腳無力，走路困難</span></label>
@@ -677,43 +677,43 @@ body {
     <div class="section">
       <div class="section-header">
         <div class="section-icon s-coral">💉</div>
-        <h3>過去治療史</h3>
+        <h3>過去處理方式</h3>
       </div>
 
       <div class="q-card">
-        <span class="q-tag tag-tx">曾接受的治療</span>
-        <p class="q-text">你過去是否接受過以下任何治療？（可複選）</p>
+        <span class="q-tag tag-tx">曾嘗試的方法</span>
+        <p class="q-text">你過去是否接受過以下任何方式？（可複選）</p>
         <div class="options">
           <label class="opt"><input type="checkbox" name="q10" value="none" data-excl="true"><span class="opt-label">沒有接受過任何治療</span></label>
           <label class="opt"><input type="checkbox" name="q10" value="prp"><span class="opt-label">PRP 高濃度血小板注射<span class="opt-sub">利用自體血液濃縮後注射，促進修復</span></span></label>
           <label class="opt"><input type="checkbox" name="q10" value="glucose"><span class="opt-label">葡萄糖注射（增生療法）<span class="opt-sub">刺激韌帶與肌腱自我修復</span></span></label>
-          <label class="opt"><input type="checkbox" name="q10" value="rehab"><span class="opt-label">復健 / 牽引拉腰治療<span class="opt-sub">物理治療、熱敷電療、腰椎牽引</span></span></label>
+          <label class="opt"><input type="checkbox" name="q10" value="rehab"><span class="opt-label">復健 / 物理治療 / 牽引<span class="opt-sub">熱敷電療、腰椎牽引、推拿按摩</span></span></label>
           <label class="opt"><input type="checkbox" name="q10" value="surgery"><span class="opt-label">脊椎手術<span class="opt-sub">椎間盤切除、脊椎融合等</span></span></label>
           <label class="opt"><input type="checkbox" name="q10" value="steroid"><span class="opt-label">類固醇注射 / 硬膜外注射</span></label>
-          <label class="opt"><input type="checkbox" name="q10" value="chiro"><span class="opt-label">整脊 / 徒手治療</span></label>
+          <label class="opt"><input type="checkbox" name="q10" value="chiro"><span class="opt-label">整脊 / 徒手治療 / 國術館</span></label>
         </div>
       </div>
 
       <div class="q-card">
-        <span class="q-tag tag-tx">治療效果</span>
-        <p class="q-text">過去的治療效果如何？</p>
+        <span class="q-tag tag-tx">處理後的效果</span>
+        <p class="q-text">過去這些方式的效果如何？</p>
         <div class="options">
           <label class="opt"><input type="radio" name="q11" value="0"><span class="opt-label">尚未接受過任何治療</span></label>
           <label class="opt"><input type="radio" name="q11" value="0"><span class="opt-label">效果良好，症狀明顯改善</span></label>
-          <label class="opt"><input type="radio" name="q11" value="1"><span class="opt-label">暫時改善，但症狀反覆復發</span></label>
+          <label class="opt"><input type="radio" name="q11" value="1"><span class="opt-label">暫時有效，但過幾天又回來了<span class="opt-sub">按摩、推拿後當下舒服，但維持不住</span></span></label>
           <label class="opt"><input type="radio" name="q11" value="2"><span class="opt-label">改善有限，效果不明顯</span></label>
           <label class="opt"><input type="radio" name="q11" value="3"><span class="opt-label">完全沒有效果或治療後更不舒服</span></label>
         </div>
       </div>
 
       <div class="q-card">
-        <span class="q-tag tag-hist">職業與生活</span>
-        <p class="q-text">你的工作或生活習慣屬於哪一類？</p>
+        <span class="q-tag tag-hist">工作與生活型態</span>
+        <p class="q-text">你的日常生活最接近哪一種？</p>
         <div class="options">
           <label class="opt"><input type="radio" name="q12" value="0"><span class="opt-label">規律運動，工作以站立或活動為主</span></label>
-          <label class="opt"><input type="radio" name="q12" value="1"><span class="opt-label">一般辦公，偶爾運動</span></label>
-          <label class="opt"><input type="radio" name="q12" value="2"><span class="opt-label">長時間久坐，鮮少運動</span></label>
-          <label class="opt"><input type="radio" name="q12" value="2"><span class="opt-label">需要重複搬重物或彎腰的工作</span></label>
+          <label class="opt"><input type="radio" name="q12" value="1"><span class="opt-label">辦公室工作，偶爾運動<span class="opt-sub">每天久坐 6 小時以上，假日偶爾動一動</span></span></label>
+          <label class="opt"><input type="radio" name="q12" value="2"><span class="opt-label">長時間久坐，幾乎不運動<span class="opt-sub">下班後身體很累但不想動，假日也多半在休息</span></span></label>
+          <label class="opt"><input type="radio" name="q12" value="2"><span class="opt-label">需要重複搬重物、彎腰或長時間站立的工作<span class="opt-sub">護理、服務業、勞動工作者</span></span></label>
         </div>
       </div>
     </div>
@@ -784,13 +784,13 @@ body {
     <div class="cta-card">
       <div class="cta-header">
         <h4>針刀微創療法</h4>
-        <p>結合傳統針灸與現代微創技術，精準處理脊椎沾黏與軟組織問題</p>
+        <p>結合傳統針灸與現代微創技術，精準處理沾黏與軟組織問題</p>
       </div>
       <div class="cta-body">
         <p class="cta-intro" id="cta-intro"></p>
         <div class="highlight-box">
           <strong>什麼是針刀療法？</strong>
-          <p>針刀是直徑僅 0.8mm 的微創工具，兼具針灸的「針」與手術刀的「刀」。在局部麻醉下精準鬆解脊椎周圍的沾黏筋膜、增生骨刺壓迫點，以及長期代償所形成的緊繃索狀物——對慢性疼痛、保守治療效果不佳者特別有幫助。</p>
+          <p>針刀是直徑僅 0.8mm 的微創工具，兼具針灸的「針」與手術刀的「刀」。在局部麻醉下精準鬆解脊椎周圍的沾黏筋膜、增生骨刺壓迫點，以及長期代償所形成的緊繃索狀物——對慢性疼痛、按摩推拿效果無法持久者特別有幫助。</p>
         </div>
         <div class="tx-features">
           <div class="feature"><div class="feature-icon">🎯</div><div class="feature-title">精準定位</div><div class="feature-desc">針對沾黏與代償舊傷，直接治療擠壓神經的沾黏處</div></div>
@@ -920,27 +920,27 @@ function showResult() {
     checks=['立即前往骨科或神經外科急診','告知醫師排尿／排便控制困難的狀況','帶齊之前的影像報告一起就診','不要等候常規門診，應掛急診評估'];
     ctaIntro='在排除緊急神經症狀後，若慢性脊椎疼痛長期無法根治，針刀療法可作為下一步的選擇。';
   } else if (total <= 6) {
-    rC='#0F6E56'; rBg='#E1F5EE'; rLabel='🟢 低風險'; ringStroke='#1D9E75';
-    title='脊椎狀況良好，建議定期保養';
-    desc='目前沒有明顯的脊椎問題。但脊椎沾黏與代償舊傷往往在症狀出現前就已悄悄累積，建議每月定期保養，防患於未然。';
+    rC='#0F6E56'; rBg='#E1F5EE'; rLabel='🟢 低負擔'; ringStroke='#1D9E75';
+    title='身體狀況良好，建議定期保養';
+    desc='目前沒有明顯的問題。但筋膜沾黏與代償舊傷往往在症狀出現前就已悄悄累積，對長時間使用電腦、久坐的上班族來說，預防性保養比等到疼痛再處理更有效。';
     checks=['維持良好姿勢與規律運動','每月一次針刀療法預防沾黏、保養脊椎','工作每 45 分鐘起身活動 5 分鐘','定期自我評估，及早發現問題'];
-    ctaIntro='脊椎保養不需要等到痛了才處理。每月一次針刀療法能有效預防筋膜沾黏累積、維持脊椎活動度，是最主動的健康管理方式。';
+    ctaIntro='身體保養不需要等到痛了才處理。每月一次針刀療法能有效預防筋膜沾黏累積、維持頸椎與腰椎活動度，是最主動的健康管理方式。';
   } else if (total <= 14) {
-    rC='#854F0B'; rBg='#FAEEDA'; rLabel='🟡 中低風險'; ringStroke='#EF9F27';
-    title='輕中度脊椎不適，建議積極保養';
-    desc='你已有輕微的脊椎不適或緊繃感，這通常是筋膜沾黏開始累積的訊號。及早介入比等到急性發作再處理效果更好。';
+    rC='#854F0B'; rBg='#FAEEDA'; rLabel='🟡 中低負擔'; ringStroke='#EF9F27';
+    title='輕中度不適，建議積極保養';
+    desc='你已有輕微的不適或緊繃感，這通常是筋膜沾黏開始累積的訊號。對上班族來說，這個階段最容易忽略，但也是最好處理的時機——及早介入比等到急性發作再處理效果更好、恢復更快。';
     checks=['每月一次針刀療法，處理沾黏並預防惡化','改善工作座姿與人體工學','配合核心肌群訓練強化脊椎支撐','若症狀加重，增加治療頻率至每兩週一次'];
-    ctaIntro='你的狀況適合以每月一次針刀療法作為保養頻率，針對已形成的輕度沾黏與代償舊傷進行處理，避免日後演變成慢性疼痛。';
+    ctaIntro='你的狀況適合以每月一次針刀療法作為保養頻率，針對已形成的輕度沾黏與代償舊傷進行處理，避免日後演變成慢性疼痛或影響睡眠。';
   } else if (total <= 22) {
-    rC='#185FA5'; rBg='#E6F1FB'; rLabel='🟠 中高風險'; ringStroke='#378ADD';
-    title='明顯脊椎問題，需積極治療';
-    desc='你的脊椎問題已對日常生活造成明顯影響。' + (chronicFail ? '過去的治療效果有限，顯示沾黏或結構性問題需要更直接的處理方式。' : '建議盡快諮詢醫師，制定積極的治療計畫。');
-    checks=['盡快安排初診評估','建議每兩週一次針刀治療，持續 2–3 個月','配合 MRI 或 CT 確認病灶位置','暫時避免加重疼痛的動作'];
+    rC='#185FA5'; rBg='#E6F1FB'; rLabel='🟠 中高負擔'; ringStroke='#378ADD';
+    title='明顯不適，需積極治療';
+    desc='你的狀況已對日常生活造成明顯影響。' + (chronicFail ? '過去的處理方式效果有限，顯示深層沾黏或結構性問題需要更直接的處置。' : '建議盡快諮詢醫師，制定積極的治療計畫。');
+    checks=['盡快安排初診評估','建議每兩週一次針刀治療，持續 2–3 個月','配合 MRI 或 CT 確認病灶位置','暫時避免加重不適的動作與姿勢'];
     ctaIntro = '你的狀況顯示已有結構性問題' + (hasDiag.length ? `（${hasDiag.map(d=>diagMap[d]||d).join('、')}）` : '') + '，建議以每兩週一次針刀治療為基礎，針對沾黏與代償舊傷進行系統性處理，' + (chronicFail ? '這也是保守治療效果有限後最有效的下一步。' : '多數患者在 2–3 個月內可明顯改善。');
   } else {
-    rC='#A32D2D'; rBg='#FCEBEB'; rLabel='🔴 高風險'; ringStroke='#E24B4A';
-    title='嚴重脊椎問題，建議積極就診治療';
-    desc='你的脊椎問題嚴重影響生活品質。' + (surgeryDone ? '即使已接受手術，症狀仍持續，可能存在術後沾黏或鄰近節段代償問題。' : chronicFail ? '且過去治療效果有限，需要更直接針對沾黏病灶的治療方式。' : '需要全面評估並盡快展開積極治療。');
+    rC='#A32D2D'; rBg='#FCEBEB'; rLabel='🔴 高負擔'; ringStroke='#E24B4A';
+    title='嚴重不適，建議積極就診治療';
+    desc='你的狀況嚴重影響生活品質。' + (surgeryDone ? '即使已接受手術，症狀仍持續，可能存在術後沾黏或鄰近節段代償問題。' : chronicFail ? '且過去治療效果有限，需要更直接針對沾黏病灶的治療方式。' : '需要全面評估並盡快展開積極治療。');
     checks=['本週內安排初診評估','建議每週一次針刀治療，積極處理沾黏與神經壓迫',(surgeryDone?'告知術後症狀變化，評估術後沾黏情況':'攜帶影像報告，確認主要病灶位置'),'依治療反應調整療程頻率'];
     ctaIntro = surgeryDone ? '術後組織沾黏是症狀持續的常見原因，針刀療法特別擅長處理術後沾黏，建議每週一次積極介入，加速恢復。' : (chronicFail ? '多種治療效果不佳，顯示沾黏病灶需要更直接的處理。建議每週一次針刀治療，從根本鬆解神經壓迫與沾黏。' : '你的情況需要積極介入，建議每週一次針刀治療，系統性處理脊椎沾黏與擠壓神經的病灶。');
   }
