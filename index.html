@@ -509,6 +509,44 @@ body {
   transition: background .15s;
 }
 .book-btn:hover { background: #fdeef0; }
+
+/* 治療頻率卡片 */
+.freq-card {
+  border-radius: var(--radius);
+  border: 2px solid;
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+  text-align: center;
+}
+.freq-label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  margin-bottom: .5rem;
+  text-transform: uppercase;
+}
+.freq-num {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: .15rem;
+}
+.freq-unit {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: .75rem;
+}
+.freq-divider {
+  width: 40px;
+  height: 2px;
+  margin: 0 auto .75rem;
+  border-radius: 2px;
+}
+.freq-note {
+  font-size: 13px;
+  line-height: 1.65;
+}
 </style>
 </head>
 <body>
@@ -770,6 +808,14 @@ body {
       <div id="checks"></div>
     </div>
 
+    <div id="freq-card" class="freq-card" style="display:none">
+      <div class="freq-label" id="freq-label"></div>
+      <div class="freq-num" id="freq-num"></div>
+      <div class="freq-unit" id="freq-unit"></div>
+      <div class="freq-divider" id="freq-divider"></div>
+      <div class="freq-note" id="freq-note"></div>
+    </div>
+
     <div class="tags-card" id="tags-card" style="display:none">
       <div id="tx-section" style="display:none">
         <div class="tags-label">曾接受的治療</div>
@@ -940,12 +986,18 @@ function showResult() {
   const total = s1+s2+s3+s4;
 
   const surgeryDone = checked.q10.includes('surgery');
-  const chronicFail = (answered.q11||0) >= 2;
   const redFlag = (answered.q7||0) >= 4;
   const hasDiag = checked.q9.filter(v => v !== 'none');
   const hasTx = checked.q10.filter(v => v !== 'none');
 
+  // 三個觸發每週治療的條件
+  const hasDiagnosis = hasDiag.some(v => ['disc','spondy','stenosis','degen','other'].includes(v));
+  const treatmentNotSticking = (answered.q11||0) === 1; // 暫時有效但又回來
+  const chronicPain = (answered.q3||0) === 3; // 慢性超過三個月
+  const needsWeekly = hasDiagnosis || treatmentNotSticking || chronicPain;
+
   let rC, rBg, rLabel, title, desc, checks, ctaIntro, ringStroke;
+  let freqNum, freqUnit, freqNote, freqColor, freqBg;
 
   if (redFlag) {
     rC='#A32D2D'; rBg='#FCEBEB'; rLabel='🔴 請立即就醫'; ringStroke='#E24B4A';
@@ -953,30 +1005,51 @@ function showResult() {
     desc='你的回答中出現了需要立即評估的紅旗症狀。馬尾症候群或嚴重脊髓壓迫若未及時處理，可能造成永久性損傷。請盡速前往骨科或神經外科急診。';
     checks=['立即前往骨科或神經外科急診','告知醫師排尿／排便控制困難的狀況','帶齊之前的影像報告一起就診','不要等候常規門診，應掛急診評估'];
     ctaIntro='在排除緊急神經症狀後，若慢性脊椎疼痛長期無法根治，針刀療法可作為下一步的選擇。';
-  } else if (total <= 6) {
-    rC='#0F6E56'; rBg='#E1F5EE'; rLabel='🟢 低負擔'; ringStroke='#1D9E75';
-    title='身體狀況良好，建議定期保養';
-    desc='目前沒有明顯的問題。但筋膜沾黏與代償舊傷往往在症狀出現前就已悄悄累積，對長時間使用電腦、久坐的上班族來說，預防性保養比等到疼痛再處理更有效。';
-    checks=['維持良好姿勢與規律運動','每月一次針刀療法預防沾黏、保養脊椎','工作每 45 分鐘起身活動 5 分鐘','定期自我評估，及早發現問題'];
-    ctaIntro='身體保養不需要等到痛了才處理。每月一次針刀療法能有效預防筋膜沾黏累積、維持頸椎與腰椎活動度，是最主動的健康管理方式。';
-  } else if (total <= 14) {
-    rC='#854F0B'; rBg='#FAEEDA'; rLabel='🟡 中低負擔'; ringStroke='#EF9F27';
-    title='輕中度不適，建議積極保養';
-    desc='你已有輕微的不適或緊繃感，這通常是筋膜沾黏開始累積的訊號。對上班族來說，這個階段最容易忽略，但也是最好處理的時機——及早介入比等到急性發作再處理效果更好、恢復更快。';
-    checks=['每月一次針刀療法，處理沾黏並預防惡化','改善工作座姿與人體工學','配合核心肌群訓練強化脊椎支撐','若症狀加重，增加治療頻率至每兩週一次'];
-    ctaIntro='你的狀況適合以每月一次針刀療法作為保養頻率，針對已形成的輕度沾黏與代償舊傷進行處理，避免日後演變成慢性疼痛或影響睡眠。';
-  } else if (total <= 22) {
-    rC='#185FA5'; rBg='#E6F1FB'; rLabel='🟠 中高負擔'; ringStroke='#378ADD';
-    title='明顯不適，需積極治療';
-    desc='你的狀況已對日常生活造成明顯影響。' + (chronicFail ? '過去的處理方式效果有限，顯示深層沾黏或結構性問題需要更直接的處置。' : '建議盡快諮詢醫師，制定積極的治療計畫。');
-    checks=['盡快安排初診評估','建議每兩週一次針刀治療，持續 2–3 個月','配合 MRI 或 CT 確認病灶位置','暫時避免加重不適的動作與姿勢'];
-    ctaIntro = '你的狀況顯示已有結構性問題' + (hasDiag.length ? `（${hasDiag.map(d=>diagMap[d]||d).join('、')}）` : '') + '，建議以每兩週一次針刀治療為基礎，針對沾黏與代償舊傷進行系統性處理，' + (chronicFail ? '這也是保守治療效果有限後最有效的下一步。' : '多數患者在 2–3 個月內可明顯改善。');
+    freqNum = null;
+
+  } else if (needsWeekly) {
+    rC='#993c1d'; rBg='#faece7'; ringStroke='#d4642a';
+    rLabel = hasDiagnosis ? '🦴 已有結構性診斷' : (chronicPain ? '⏱ 慢性疼痛期' : '🔁 治療效果無法持久');
+    title = hasDiagnosis
+      ? '椎間盤／骨刺確診，現在是介入關鍵期'
+      : (chronicPain ? '慢性不適超過三個月，需要系統性處理' : '推拿按摩效果維持不住，根源尚未解決');
+    desc = hasDiagnosis
+      ? '影像已確認結構性問題，代表沾黏與壓迫已經存在。這個階段持續累積只會讓症狀更難逆轉——每週針刀能有效打斷沾黏循環，是目前最直接的介入方式。'
+      : (chronicPain
+        ? '超過三個月的慢性不適代表身體已進入代償模式，單靠休息或偶爾保養很難真正改變。每週系統性的針刀治療，才能逐步鬆解深層沾黏、重建正常的神經滑動空間。'
+        : '按摩推拿只能放鬆表層肌肉，無法處理深層筋膜沾黏。效果維持不住是因為根源還在——針刀直接鬆解沾黏點，才能讓改善真正持久。');
+    checks=[
+      '建議本週安排初診評估',
+      '依醫師評估制定每週治療計畫',
+      '治療 6 次後由醫師評估療效與後續方向',
+      surgeryDone ? '術後沾黏需告知醫師，針對術後組織進行評估' : '攜帶影像報告，讓醫師確認主要病灶位置'
+    ];
+    ctaIntro = hasDiagnosis
+      ? `確診${hasDiag.map(d=>diagMap[d]||d).join('、')}後，每週一次針刀是目前最有效的保守治療選擇。治療 6 次後評估效果，多數患者在這個階段已能感受到明顯改善。`
+      : '每週一次針刀治療，系統性處理深層沾黏——治療 6 次後評估效果，讓醫師根據你的恢復狀況調整後續方向。';
+    freqNum = '每週'; freqUnit = '一次';
+    freqNote = '連續治療 6 次後，由醫師評估療效與後續方向';
+    freqColor = '#993c1d'; freqBg = '#faece7';
+
+  } else if (total <= 4) {
+    rC='#0F6E56'; rBg='#E1F5EE'; rLabel='🟢 預防保養期'; ringStroke='#1D9E75';
+    title='目前狀況良好，建議預防性保養';
+    desc='目前沒有明顯結構性問題。但筋膜沾黏往往在症狀出現前就已悄悄累積，對長時間久坐的上班族來說，定期保養比等到疼痛再處理更省時省力。';
+    checks=['維持良好姿勢與規律運動','每月一次針刀保養，預防沾黏累積','工作每 45 分鐘起身活動 5 分鐘','定期自我評估，及早發現問題'];
+    ctaIntro='脊椎保養不用等到痛了才開始。每月一次針刀療法有效預防筋膜沾黏，維持頸椎與腰椎活動度。治療 6 次後評估狀況，依需求調整頻率。';
+    freqNum = '每月'; freqUnit = '一次';
+    freqNote = '連續治療 6 次後，由醫師評估是否需要調整頻率';
+    freqColor = '#0F6E56'; freqBg = '#E1F5EE';
+
   } else {
-    rC='#A32D2D'; rBg='#FCEBEB'; rLabel='🔴 高負擔'; ringStroke='#E24B4A';
-    title='嚴重不適，建議積極就診治療';
-    desc='你的狀況嚴重影響生活品質。' + (surgeryDone ? '即使已接受手術，症狀仍持續，可能存在術後沾黏或鄰近節段代償問題。' : chronicFail ? '且過去治療效果有限，需要更直接針對沾黏病灶的治療方式。' : '需要全面評估並盡快展開積極治療。');
-    checks=['本週內安排初診評估','建議每週一次針刀治療，積極處理沾黏與神經壓迫',(surgeryDone?'告知術後症狀變化，評估術後沾黏情況':'攜帶影像報告，確認主要病灶位置'),'依治療反應調整療程頻率'];
-    ctaIntro = surgeryDone ? '術後組織沾黏是症狀持續的常見原因，針刀療法特別擅長處理術後沾黏，建議每週一次積極介入，加速恢復。' : (chronicFail ? '多種治療效果不佳，顯示沾黏病灶需要更直接的處理。建議每週一次針刀治療，從根本鬆解神經壓迫與沾黏。' : '你的情況需要積極介入，建議每週一次針刀治療，系統性處理脊椎沾黏與擠壓神經的病灶。');
+    rC='#854F0B'; rBg='#FAEEDA'; rLabel='🟡 積極保養期'; ringStroke='#EF9F27';
+    title='已有輕中度不適，建議積極保養';
+    desc='你已有不適感，這通常是筋膜沾黏開始累積的訊號。這個階段是最好處理的時機——及早每月介入，避免日後演變成慢性疼痛或確診結構性問題。';
+    checks=['每月一次針刀，處理已形成的輕度沾黏','改善工作座姿與人體工學','配合核心肌群訓練強化脊椎支撐','若症狀加重，回診調整治療頻率'];
+    ctaIntro='你的狀況適合以每月一次針刀療法作為保養頻率。治療 6 次後由醫師評估效果，若症狀持續或加重，可調整為每週介入。';
+    freqNum = '每月'; freqUnit = '一次';
+    freqNote = '連續治療 6 次後，由醫師評估療效與後續方向';
+    freqColor = '#854F0B'; freqBg = '#FAEEDA';
   }
 
   document.getElementById('ring-num').textContent = total;
@@ -995,7 +1068,26 @@ function showResult() {
     `<div class="check-row"><div class="check-dot" style="background:${rC}"></div><span>${c}</span></div>`
   ).join('');
 
-  function setBar(id, val, max, color) {
+  // 治療頻率卡片
+  const freqCard = document.getElementById('freq-card');
+  if (freqNum) {
+    freqCard.style.display = 'block';
+    freqCard.style.borderColor = freqColor;
+    freqCard.style.background = freqBg;
+    document.getElementById('freq-label').style.color = freqColor;
+    document.getElementById('freq-label').textContent = '建議治療頻率';
+    document.getElementById('freq-num').style.color = freqColor;
+    document.getElementById('freq-num').textContent = freqNum;
+    document.getElementById('freq-unit').style.color = rC;
+    document.getElementById('freq-unit').textContent = freqUnit;
+    document.getElementById('freq-divider').style.background = freqColor;
+    document.getElementById('freq-note').style.color = rC;
+    document.getElementById('freq-note').textContent = freqNote;
+  } else {
+    freqCard.style.display = 'none';
+  }
+
+  function setBar(id, val, max) {
     const p = Math.round(Math.min(val,max)/max*100);
     document.getElementById(id).style.width = p + '%';
     document.getElementById(id+'p').textContent = p + '%';
