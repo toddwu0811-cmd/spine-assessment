@@ -512,40 +512,32 @@ body {
 
 /* 治療頻率卡片 */
 .freq-card {
-  border-radius: var(--radius);
-  border: 2px solid;
-  padding: 1.5rem;
+  border-left: 3px solid;
+  border-top: 0.5px solid var(--border);
+  border-right: 0.5px solid var(--border);
+  border-bottom: 0.5px solid var(--border);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 1rem 1.25rem;
   margin-bottom: 1.25rem;
-  text-align: center;
+  background: var(--card);
 }
 .freq-label {
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: .08em;
-  margin-bottom: .5rem;
-  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: .06em;
+  margin-bottom: .4rem;
+  color: var(--text-light);
 }
 .freq-num {
-  font-family: 'Noto Serif TC', serif;
-  font-size: 52px;
-  font-weight: 700;
-  line-height: 1;
-  margin-bottom: .15rem;
-}
-.freq-unit {
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 500;
-  margin-bottom: .75rem;
+  margin-bottom: .4rem;
 }
-.freq-divider {
-  width: 40px;
-  height: 2px;
-  margin: 0 auto .75rem;
-  border-radius: 2px;
-}
+.freq-unit { display: none; }
+.freq-divider { display: none; }
 .freq-note {
-  font-size: 13px;
-  line-height: 1.65;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-light);
 }
 </style>
 </head>
@@ -1072,16 +1064,11 @@ function showResult() {
   const freqCard = document.getElementById('freq-card');
   if (freqNum) {
     freqCard.style.display = 'block';
-    freqCard.style.borderColor = freqColor;
-    freqCard.style.background = freqBg;
+    freqCard.style.borderLeftColor = freqColor;
     document.getElementById('freq-label').style.color = freqColor;
     document.getElementById('freq-label').textContent = '建議治療頻率';
     document.getElementById('freq-num').style.color = freqColor;
-    document.getElementById('freq-num').textContent = freqNum;
-    document.getElementById('freq-unit').style.color = rC;
-    document.getElementById('freq-unit').textContent = freqUnit;
-    document.getElementById('freq-divider').style.background = freqColor;
-    document.getElementById('freq-note').style.color = rC;
+    document.getElementById('freq-num').textContent = freqNum + freqUnit;
     document.getElementById('freq-note').textContent = freqNote;
   } else {
     freqCard.style.display = 'none';
