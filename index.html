@@ -521,23 +521,38 @@ body {
   margin-bottom: 1.25rem;
   background: var(--card);
 }
+.freq-inner {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+.freq-left {
+  flex-shrink: 0;
+  border-right: 0.5px solid var(--border);
+  padding-right: 1.25rem;
+}
 .freq-label {
   font-size: 11px;
   letter-spacing: .06em;
-  margin-bottom: .4rem;
-  color: var(--text-light);
+  margin-bottom: .35rem;
 }
 .freq-num {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 500;
-  margin-bottom: .4rem;
+  white-space: nowrap;
 }
 .freq-unit { display: none; }
 .freq-divider { display: none; }
 .freq-note {
-  font-size: 12px;
-  line-height: 1.6;
+  font-size: 11px;
   color: var(--text-light);
+  margin-top: .35rem;
+  line-height: 1.5;
+}
+.freq-rationale {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.75;
 }
 </style>
 </head>
@@ -738,12 +753,12 @@ body {
 
       <div class="q-card">
         <span class="q-tag tag-hist">工作與生活型態</span>
-        <p class="q-text">你的日常生活最接近哪一種？</p>
+        <p class="q-text">你平常的狀態最接近哪一種？</p>
         <div class="options">
-          <label class="opt"><input type="radio" name="q12" value="0"><span class="opt-label">規律運動，工作以站立或活動為主</span></label>
-          <label class="opt"><input type="radio" name="q12" value="1"><span class="opt-label">辦公室工作，偶爾運動<span class="opt-sub">每天久坐 6 小時以上，假日偶爾動一動</span></span></label>
-          <label class="opt"><input type="radio" name="q12" value="2"><span class="opt-label">長時間久坐，幾乎不運動<span class="opt-sub">下班後身體很累但不想動，假日也多半在休息</span></span></label>
-          <label class="opt"><input type="radio" name="q12" value="2"><span class="opt-label">需要重複搬重物、彎腰或長時間站立的工作<span class="opt-sub">護理、服務業、勞動工作者</span></span></label>
+          <label class="opt"><input type="radio" name="q12" value="0"><span class="opt-label">大部分時間都在動<span class="opt-sub">工作需要站立、走動，或有規律運動習慣</span></span></label>
+          <label class="opt"><input type="radio" name="q12" value="1"><span class="opt-label">坐著為主，偶爾會動一動<span class="opt-sub">辦公室或居家工作，假日偶爾出去走走</span></span></label>
+          <label class="opt"><input type="radio" name="q12" value="2"><span class="opt-label">幾乎整天坐著，下班後也不太動<span class="opt-sub">長時間盯螢幕，下班後通常直接躺平休息</span></span></label>
+          <label class="opt"><input type="radio" name="q12" value="2"><span class="opt-label">工作需要長時間站立、搬重物或重複彎腰<span class="opt-sub">護理、餐飲、製造、服務業等體力工作</span></span></label>
         </div>
       </div>
     </div>
@@ -801,11 +816,14 @@ body {
     </div>
 
     <div id="freq-card" class="freq-card" style="display:none">
-      <div class="freq-label" id="freq-label"></div>
-      <div class="freq-num" id="freq-num"></div>
-      <div class="freq-unit" id="freq-unit"></div>
-      <div class="freq-divider" id="freq-divider"></div>
-      <div class="freq-note" id="freq-note"></div>
+      <div class="freq-inner">
+        <div class="freq-left">
+          <div class="freq-label" id="freq-label"></div>
+          <div class="freq-num" id="freq-num"></div>
+          <div class="freq-note" id="freq-note"></div>
+        </div>
+        <div class="freq-rationale">沾黏是大多數脊椎問題的共同根源——從自律神經症狀、各種疼痛、軟組織失能，到椎間盤變化與骨性增生，都與它有關。及早針刀介入將沾黏剝離，為脊椎與神經減壓，恢復日常生活品質。</div>
+      </div>
     </div>
 
     <div class="tags-card" id="tags-card" style="display:none">
@@ -1064,10 +1082,10 @@ function showResult() {
   const freqCard = document.getElementById('freq-card');
   if (freqNum) {
     freqCard.style.display = 'block';
-    freqCard.style.borderLeftColor = freqColor;
-    document.getElementById('freq-label').style.color = freqColor;
-    document.getElementById('freq-label').textContent = '建議治療頻率';
-    document.getElementById('freq-num').style.color = freqColor;
+    freqCard.style.borderLeftColor = '#c9697a';
+    document.getElementById('freq-label').style.color = '#c9697a';
+    document.getElementById('freq-label').textContent = '建議頻率';
+    document.getElementById('freq-num').style.color = '#c9697a';
     document.getElementById('freq-num').textContent = freqNum + freqUnit;
     document.getElementById('freq-note').textContent = freqNote;
   } else {
