@@ -32,190 +32,40 @@
   --radius: 12px;
   --radius-sm: 8px;
 }
-
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: 'Noto Sans TC', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  line-height: 1.6;
-}
-
-/* Header */
-.site-header {
-  background: #fff0f2;
-  border-bottom: 1px solid #f5c8ce;
-  padding: 1rem 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.site-header .logo {
-  width: 32px; height: 32px;
-  background: #f5c8ce;
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px;
-}
-.site-header h1 {
-  font-family: 'Noto Serif TC', serif;
-  font-size: 16px;
-  font-weight: 500;
-  color: #c9697a;
-  letter-spacing: .05em;
-}
-.progress-header {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.progress-track {
-  width: 120px;
-  height: 3px;
-  background: rgba(255,255,255,0.15);
-  border-radius: 2px;
-  overflow: hidden;
-}
-.progress-track-fill {
-  height: 100%;
-  background: #e8a0ac;
-  border-radius: 2px;
-  transition: width .35s ease;
-  width: 0%;
-}
-.progress-pct {
-  font-size: 12px;
-  color: #8b3a47;
-  min-width: 28px;
-}
-
-
-/* Layout */
-.page {
-  max-width: 680px;
-  margin: 0 auto;
-  padding: 2rem 1rem 4rem;
-}
-
-/* Hero */
-.hero {
-  text-align: center;
-  padding: 2.5rem 1rem 2rem;
-}
-.hero-badge {
-  display: inline-block;
-  background: var(--green-pale);
-  color: var(--green-mid);
-  font-size: 12px;
-  padding: 4px 14px;
-  border-radius: 20px;
-  margin-bottom: 1rem;
-  letter-spacing: .05em;
-}
-.hero h2 {
-  font-family: 'Noto Serif TC', serif;
-  font-size: 26px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: .75rem;
-  line-height: 1.4;
-}
-.hero p {
-  font-size: 14px;
-  color: var(--text-muted);
-  max-width: 440px;
-  margin: 0 auto;
-  line-height: 1.7;
-}
-
-/* Disclaimer */
-.disclaimer {
-  background: #fffbf0;
-  border: 1px solid #fde68a;
-  border-radius: var(--radius-sm);
-  padding: .75rem 1rem;
-  font-size: 12px;
-  color: #92400e;
-  margin-bottom: 2rem;
-  display: flex;
-  gap: 8px;
-  line-height: 1.5;
-}
-
-/* Section */
+body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; }
+.site-header { background: #fff0f2; border-bottom: 1px solid #f5c8ce; padding: 1rem 1.5rem; display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 100; }
+.site-header .logo { width: 32px; height: 32px; background: #f5c8ce; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+.site-header h1 { font-family: 'Noto Serif TC', serif; font-size: 16px; font-weight: 500; color: #c9697a; letter-spacing: .05em; }
+.progress-header { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+.progress-track { width: 120px; height: 3px; background: rgba(255,255,255,0.15); border-radius: 2px; overflow: hidden; }
+.progress-track-fill { height: 100%; background: #e8a0ac; border-radius: 2px; transition: width .35s ease; width: 0%; }
+.progress-pct { font-size: 12px; color: #8b3a47; min-width: 28px; }
+.page { max-width: 680px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+.hero { text-align: center; padding: 2.5rem 1rem 2rem; }
+.hero-badge { display: inline-block; background: var(--green-pale); color: var(--green-mid); font-size: 12px; padding: 4px 14px; border-radius: 20px; margin-bottom: 1rem; letter-spacing: .05em; }
+.hero h2 { font-family: 'Noto Serif TC', serif; font-size: 26px; font-weight: 700; color: var(--text); margin-bottom: .75rem; line-height: 1.4; }
+.hero p { font-size: 14px; color: var(--text-muted); max-width: 440px; margin: 0 auto; line-height: 1.7; }
+.disclaimer { background: #fffbf0; border: 1px solid #fde68a; border-radius: var(--radius-sm); padding: .75rem 1rem; font-size: 12px; color: #92400e; margin-bottom: 2rem; display: flex; gap: 8px; line-height: 1.5; }
 .section { margin-bottom: 2.5rem; }
-.section-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 1rem;
-  padding-bottom: .6rem;
-  border-bottom: 1px solid var(--border);
-}
-.section-icon {
-  width: 34px; height: 34px;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 15px;
-}
+.section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; padding-bottom: .6rem; border-bottom: 1px solid var(--border); }
+.section-icon { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px; }
 .s-blue  { background: var(--blue-light);   color: var(--blue); }
 .s-amber { background: var(--amber-light);  color: var(--amber); }
 .s-teal  { background: var(--green-pale);   color: var(--green-mid); }
 .s-purple{ background: var(--purple-light); color: var(--purple); }
 .s-coral { background: var(--coral-light);  color: var(--coral); }
-.section-header h3 {
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--text);
-}
-
-/* Question card */
-.q-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.1rem 1.25rem;
-  margin-bottom: .75rem;
-}
-.q-tag {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 500;
-  padding: 2px 9px;
-  border-radius: 4px;
-  margin-bottom: .5rem;
-  letter-spacing: .03em;
-}
+.section-header h3 { font-size: 15px; font-weight: 500; color: var(--text); }
+.q-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.25rem; margin-bottom: .75rem; }
+.q-tag { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 9px; border-radius: 4px; margin-bottom: .5rem; letter-spacing: .03em; }
 .tag-pain   { background: var(--coral-light);  color: var(--coral); }
 .tag-func   { background: var(--blue-light);   color: var(--blue); }
 .tag-neuro  { background: var(--amber-light);  color: var(--amber); }
 .tag-hist   { background: var(--purple-light); color: var(--purple); }
 .tag-tx     { background: var(--green-pale);   color: var(--green-mid); }
-.q-text {
-  font-size: 14px;
-  color: var(--text);
-  margin-bottom: .75rem;
-  line-height: 1.65;
-}
-
-/* Options */
+.q-text { font-size: 14px; color: var(--text); margin-bottom: .75rem; line-height: 1.65; }
 .options { display: flex; flex-direction: column; gap: 6px; }
-.opt {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  padding: .6rem .85rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: border-color .15s, background .15s;
-}
+.opt { display: flex; align-items: flex-start; gap: 10px; padding: .6rem .85rem; border: 1px solid var(--border); border-radius: var(--radius-sm); cursor: pointer; transition: border-color .15s, background .15s; }
 .opt:hover { border-color: var(--border-med); background: #f9fafb; }
 .opt.sel-r { border-color: #378ADD; background: var(--blue-light); }
 .opt.sel-c { border-color: var(--green-light); background: var(--green-pale); }
@@ -223,337 +73,74 @@ body {
 .opt input[type=checkbox] { accent-color: var(--green-light); }
 .opt-label { font-size: 13px; color: var(--text); line-height: 1.5; }
 .opt-sub { font-size: 11px; color: var(--text-light); margin-top: 2px; display: block; }
-
-/* Submit */
 .submit-wrap { padding-top: .5rem; }
-.submit-btn {
-  width: 100%;
-  padding: 14px;
-  background: #c9697a;
-  border: none;
-  border-radius: var(--radius);
-  font-size: 15px;
-  font-weight: 500;
-  font-family: 'Noto Sans TC', sans-serif;
-  color: #fff;
-  cursor: pointer;
-  letter-spacing: .05em;
-  transition: background .15s, opacity .15s;
-}
+.submit-btn { width: 100%; padding: 14px; background: #c9697a; border: none; border-radius: var(--radius); font-size: 15px; font-weight: 500; font-family: 'Noto Sans TC', sans-serif; color: #fff; cursor: pointer; letter-spacing: .05em; transition: background .15s, opacity .15s; }
 .submit-btn:hover:not(:disabled) { background: #d4808f; }
 .submit-btn:disabled { opacity: .35; cursor: not-allowed; }
-
-/* ===== RESULT PAGE ===== */
 #result-page { display: none; }
+.result-hero { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.75rem; text-align: center; margin-bottom: 1.25rem; }
 
-.result-hero {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.75rem;
-  text-align: center;
-  margin-bottom: 1.25rem;
-}
-.ring-wrap { width: 110px; height: 110px; margin: 0 auto 1rem; position: relative; }
-.ring-wrap svg { width: 100%; height: 100%; }
-.ring-bg { fill: none; stroke: #eef0f2; stroke-width: 10; }
-.ring-fg { fill: none; stroke-width: 10; stroke-linecap: round; transform: rotate(-90deg); transform-origin: 50% 50%; transition: stroke-dashoffset .7s cubic-bezier(.4,0,.2,1); }
-.ring-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; }
-.ring-num { font-size: 26px; font-weight: 500; color: var(--text); line-height: 1; }
-.ring-max { font-size: 11px; color: var(--text-light); }
-.risk-pill {
-  display: inline-block;
-  padding: 5px 16px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 500;
-  margin-bottom: .6rem;
-}
-.result-title {
-  font-family: 'Noto Serif TC', serif;
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: .5rem;
-}
-.result-desc {
-  font-size: 13px;
-  color: var(--text-muted);
-  line-height: 1.75;
-}
-
-/* Domain bars */
-.domains {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-bottom: 1.25rem;
-}
-.domain-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: .85rem 1rem;
-}
+.risk-pill { display: inline-block; padding: 5px 16px; border-radius: 20px; font-size: 13px; font-weight: 500; margin-bottom: .6rem; }
+.result-title { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: .5rem; }
+.result-desc { font-size: 13px; color: var(--text-muted); line-height: 1.75; }
+.domains { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 1.25rem; }
+.domain-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .85rem 1rem; }
 .domain-label { font-size: 11px; color: var(--text-light); margin-bottom: 5px; }
 .domain-bar-bg { height: 5px; background: #eef0f2; border-radius: 3px; overflow: hidden; }
 .domain-bar-fill { height: 100%; border-radius: 3px; transition: width .7s ease; }
 .domain-pct { font-size: 13px; font-weight: 500; margin-top: 4px; }
-
-/* Checks */
-.checks-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.1rem 1.25rem;
-  margin-bottom: 1.25rem;
-}
+.checks-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.25rem; margin-bottom: 1.25rem; }
 .checks-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: .75rem; }
 .check-row { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text); line-height: 1.55; margin-bottom: 7px; }
 .check-dot { width: 6px; height: 6px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
-
-/* Tags */
-.tags-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1rem 1.25rem;
-  margin-bottom: 1.25rem;
-}
+.tags-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.25rem; margin-bottom: 1.25rem; }
 .tags-label { font-size: 12px; color: var(--text-light); margin-bottom: .5rem; }
 .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: .75rem; }
 .tag-tx { font-size: 12px; padding: 3px 10px; border-radius: 12px; background: var(--amber-light); color: var(--amber); border: 1px solid #fac775; }
 .tag-diag { font-size: 12px; padding: 3px 10px; border-radius: 12px; background: var(--coral-light); color: var(--coral); border: 1px solid #f5c4b3; }
-
-/* CTA */
-.cta-card {
-  border-radius: var(--radius);
-  overflow: hidden;
-  border: 1px solid var(--border);
-  margin-bottom: 1.5rem;
-}
-.cta-header {
-  background: #f5c8ce;
-  padding: 1.5rem;
-  text-align: center;
-}
-.cta-header h4 {
-  font-family: 'Noto Serif TC', serif;
-  font-size: 18px;
-  font-weight: 700;
-  color: #8b3a47;
-  margin-bottom: .4rem;
-}
+.cta-card { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); margin-bottom: 1.5rem; }
+.cta-header { background: #f5c8ce; padding: 1.5rem; text-align: center; }
+.cta-header h4 { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 700; color: #8b3a47; margin-bottom: .4rem; }
 .cta-header p { font-size: 13px; color: #b05060; line-height: 1.6; }
 .cta-body { background: var(--card); padding: 1.25rem 1.5rem; }
 .cta-intro { font-size: 14px; color: var(--text-muted); line-height: 1.75; margin-bottom: 1.1rem; }
-.highlight-box {
-  background: #fff5f6;
-  border: 1px solid #f5c8ce;
-  border-radius: var(--radius-sm);
-  padding: .9rem 1.1rem;
-  margin-bottom: 1.1rem;
-}
+.highlight-box { background: #fff5f6; border: 1px solid #f5c8ce; border-radius: var(--radius-sm); padding: .9rem 1.1rem; margin-bottom: 1.1rem; }
 .highlight-box strong { font-size: 13px; font-weight: 500; color: #8b3a47; display: block; margin-bottom: .35rem; }
 .highlight-box p { font-size: 12px; color: #c9697a; line-height: 1.65; }
-.tx-features {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-bottom: 1.25rem;
-}
-.feature {
-  background: #f7f9f8;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: .85rem 1rem;
-}
+.tx-features { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 1.25rem; }
+.feature { background: #f7f9f8; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: .85rem 1rem; }
 .feature-icon { font-size: 18px; margin-bottom: .35rem; }
 .feature-title { font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
 .feature-desc { font-size: 11px; color: var(--text-light); line-height: 1.5; }
 .btn-group { display: flex; flex-direction: column; gap: 8px; }
-.btn-main {
-  display: block;
-  width: 100%;
-  padding: 13px;
-  background: #c9697a;
-  color: #fff;
-  border: none;
-  border-radius: var(--radius-sm);
-  font-size: 14px;
-  font-weight: 500;
-  font-family: 'Noto Sans TC', sans-serif;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  letter-spacing: .04em;
-  transition: background .15s;
-}
+.btn-main { display: block; width: 100%; padding: 13px; background: #c9697a; color: #fff; border: none; border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; font-family: 'Noto Sans TC', sans-serif; text-align: center; text-decoration: none; cursor: pointer; letter-spacing: .04em; transition: background .15s; }
 .btn-main:hover { background: #d4808f; }
-.btn-outline {
-  display: block;
-  width: 100%;
-  padding: 11px;
-  background: transparent;
-  color: #c9697a;
-  border: 1px solid #e8a0ac;
-  border-radius: var(--radius-sm);
-  font-size: 14px;
-  font-family: 'Noto Sans TC', sans-serif;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background .15s;
-}
+.btn-outline { display: block; width: 100%; padding: 11px; background: transparent; color: #c9697a; border: 1px solid #e8a0ac; border-radius: var(--radius-sm); font-size: 14px; font-family: 'Noto Sans TC', sans-serif; text-align: center; text-decoration: none; cursor: pointer; transition: background .15s; }
 .btn-outline:hover { background: #fdeef0; }
-.reset-btn {
-  background: none;
-  border: 1px solid var(--border-med);
-  border-radius: var(--radius-sm);
-  padding: 8px 20px;
-  font-size: 13px;
-  font-family: 'Noto Sans TC', sans-serif;
-  cursor: pointer;
-  color: var(--text-light);
-  transition: background .15s;
-}
+.reset-btn { background: none; border: 1px solid var(--border-med); border-radius: var(--radius-sm); padding: 8px 20px; font-size: 13px; font-family: 'Noto Sans TC', sans-serif; cursor: pointer; color: var(--text-light); transition: background .15s; }
 .reset-btn:hover { background: #f0f2f1; }
-
-/* Footer */
-.site-footer {
-  text-align: center;
-  padding: 2rem 1rem;
-  font-size: 11px;
-  color: var(--text-light);
-  border-top: 1px solid var(--border);
-  margin-top: 1rem;
-  line-height: 1.8;
-}
-
-@media (max-width: 480px) {
-  .hero h2 { font-size: 22px; }
-  .progress-track { width: 80px; }
-  .tx-features { grid-template-columns: 1fr; }
-  .domains { grid-template-columns: 1fr; }
-}
-
-/* 其他症狀引導 */
-.ai-section {
-  margin-top: 1.5rem;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.25rem 1.5rem;
-}
-.ai-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 1rem;
-}
-.ai-icon {
-  width: 40px; height: 40px;
-  background: #fdeef0;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px;
-  flex-shrink: 0;
-}
-.ai-title {
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--text);
-}
-.ai-subtitle {
-  font-size: 12px;
-  color: var(--text-light);
-  margin-top: 2px;
-  line-height: 1.5;
-}
-.ai-examples {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 1rem;
-}
-.ai-example-tag {
-  font-size: 12px;
-  padding: 4px 10px;
-  border-radius: 12px;
-  background: #fff5f6;
-  color: #c9697a;
-  border: 1px solid #f5c8ce;
-}
-.ai-desc {
-  font-size: 13px;
-  color: var(--text-muted);
-  line-height: 1.75;
-}
-.book-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  margin-top: 1rem;
-}
-.book-btn {
-  display: block;
-  padding: 11px 8px;
-  background: transparent;
-  color: #c9697a;
-  border: 1px solid #e8a0ac;
-  border-radius: var(--radius-sm);
-  font-size: 13px;
-  font-family: 'Noto Sans TC', sans-serif;
-  text-align: center;
-  text-decoration: none;
-  transition: background .15s;
-}
+.site-footer { text-align: center; padding: 2rem 1rem; font-size: 11px; color: var(--text-light); border-top: 1px solid var(--border); margin-top: 1rem; line-height: 1.8; }
+@media (max-width: 480px) { .hero h2 { font-size: 22px; } .progress-track { width: 80px; } .tx-features { grid-template-columns: 1fr; } .domains { grid-template-columns: 1fr; } }
+.ai-section { margin-top: 1.5rem; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.5rem; }
+.ai-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; }
+.ai-icon { width: 40px; height: 40px; background: #fdeef0; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.ai-title { font-size: 15px; font-weight: 500; color: var(--text); }
+.ai-subtitle { font-size: 12px; color: var(--text-light); margin-top: 2px; line-height: 1.5; }
+.ai-examples { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem; }
+.ai-example-tag { font-size: 12px; padding: 4px 10px; border-radius: 12px; background: #fff5f6; color: #c9697a; border: 1px solid #f5c8ce; }
+.ai-desc { font-size: 13px; color: var(--text-muted); line-height: 1.75; }
+.book-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 1rem; }
+.book-btn { display: block; padding: 11px 8px; background: transparent; color: #c9697a; border: 1px solid #e8a0ac; border-radius: var(--radius-sm); font-size: 13px; font-family: 'Noto Sans TC', sans-serif; text-align: center; text-decoration: none; transition: background .15s; }
 .book-btn:hover { background: #fdeef0; }
-
-/* 治療頻率卡片 */
-.freq-card {
-  border-left: 3px solid;
-  border-top: 0.5px solid var(--border);
-  border-right: 0.5px solid var(--border);
-  border-bottom: 0.5px solid var(--border);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  padding: 1rem 1.25rem;
-  margin-bottom: 1.25rem;
-  background: var(--card);
-}
-.freq-inner {
-  display: flex;
-  gap: 1.25rem;
-  align-items: flex-start;
-}
-.freq-left {
-  flex-shrink: 0;
-  border-right: 0.5px solid var(--border);
-  padding-right: 1.25rem;
-}
-.freq-label {
-  font-size: 11px;
-  letter-spacing: .06em;
-  margin-bottom: .35rem;
-}
-.freq-num {
-  font-size: 20px;
-  font-weight: 500;
-  white-space: nowrap;
-}
+.freq-card { border-left: 3px solid; border-top: 0.5px solid var(--border); border-right: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 1rem 1.25rem; margin-bottom: 1.25rem; background: var(--card); }
+.freq-inner { display: flex; gap: 1.25rem; align-items: flex-start; }
+.freq-left { flex-shrink: 0; border-right: 0.5px solid var(--border); padding-right: 1.25rem; }
+.freq-label { font-size: 11px; letter-spacing: .06em; margin-bottom: .35rem; }
+.freq-num { font-size: 20px; font-weight: 500; white-space: nowrap; }
 .freq-unit { display: none; }
 .freq-divider { display: none; }
-.freq-note {
-  font-size: 11px;
-  color: var(--text-light);
-  margin-top: .35rem;
-  line-height: 1.5;
-}
-.freq-rationale {
-  font-size: 12px;
-  color: var(--text-muted);
-  line-height: 1.75;
-}
+.freq-note { font-size: 11px; color: var(--text-light); margin-top: .35rem; line-height: 1.5; }
+.freq-rationale { font-size: 12px; color: var(--text-muted); line-height: 1.75; }
 </style>
 </head>
 <body>
@@ -569,7 +156,6 @@ body {
 
 <main class="page">
 
-  <!-- ===== FORM PAGE ===== -->
   <div id="form-page">
     <div class="hero">
       <span class="hero-badge">免費自我評估</span>
@@ -582,13 +168,11 @@ body {
       <span>本問卷為衛教工具，不構成個人醫療診斷或治療建議。如有持續疼痛或神經症狀，請諮詢合格醫療人員。</span>
     </div>
 
-    <!-- 身體不適 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon s-blue">😣</div>
         <h3>身體不適</h3>
       </div>
-
       <div class="q-card">
         <span class="q-tag tag-pain">不舒服的位置</span>
         <p class="q-text">你最近身體哪些地方讓你困擾？（可複選）</p>
@@ -600,7 +184,6 @@ body {
           <label class="opt"><input type="checkbox" name="q1" value="sacrum"><span class="opt-sub">薦椎 / 臀部深處<span class="opt-sub">坐著時臀部深層悶痛、坐久了換腳才舒服</span></span></label>
         </div>
       </div>
-
       <div class="q-card">
         <span class="q-tag tag-pain">不適程度</span>
         <p class="q-text">這些不舒服最嚴重時，你會用幾分來形容？（0＝完全不影響，10＝難以忍受）</p>
@@ -612,7 +195,6 @@ body {
           <label class="opt"><input type="radio" name="q2" value="4"><span class="opt-label">9–10 分：劇烈，嚴重影響日常生活</span></label>
         </div>
       </div>
-
       <div class="q-card">
         <span class="q-tag tag-pain">持續時間</span>
         <p class="q-text">這個狀況大概持續多久了？</p>
@@ -626,13 +208,11 @@ body {
       </div>
     </div>
 
-    <!-- 功能影響 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon s-amber">🚶</div>
         <h3>生活影響</h3>
       </div>
-
       <div class="q-card">
         <span class="q-tag tag-func">日常影響</span>
         <p class="q-text">這些不舒服對你日常生活的影響最接近哪一種？</p>
@@ -643,7 +223,6 @@ body {
           <label class="opt"><input type="radio" name="q4" value="3"><span class="opt-label">嚴重影響，有些事做不了<span class="opt-sub">無法久坐開車、無法搬東西、走路或站立一段時間就需要休息</span></span></label>
         </div>
       </div>
-
       <div class="q-card">
         <span class="q-tag tag-func">睡眠品質</span>
         <p class="q-text">你的睡眠狀況最近如何？</p>
@@ -656,13 +235,11 @@ body {
       </div>
     </div>
 
-    <!-- 神經症狀 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon s-teal">⚡</div>
         <h3>神經症狀</h3>
       </div>
-
       <div class="q-card">
         <span class="q-tag tag-neuro">不適是否往外擴散？</span>
         <p class="q-text">不舒服有沒有從頸部或腰背「延伸」到手或腳？這種往四肢延伸的感覺叫做放射痛，是神經受到壓迫的訊號。</p>
@@ -673,7 +250,6 @@ body {
           <label class="opt"><input type="radio" name="q6" value="3"><span class="opt-label">腳底麻木、雙腳踩地無力、走路容易絆倒<span class="opt-sub">神經壓迫較嚴重的表現，需盡快就醫評估</span></span></label>
         </div>
       </div>
-
       <div class="q-card">
         <span class="q-tag tag-neuro">紅旗症狀</span>
         <p class="q-text">你是否有以下任何症狀？（需立即就醫）</p>
@@ -686,13 +262,11 @@ body {
       </div>
     </div>
 
-    <!-- 影像與診斷 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon s-purple">🔬</div>
         <h3>影像檢查與診斷</h3>
       </div>
-
       <div class="q-card">
         <span class="q-tag tag-hist">影像檢查</span>
         <p class="q-text">你是否曾接受過脊椎影像檢查？</p>
@@ -703,7 +277,6 @@ body {
           <label class="opt"><input type="radio" name="q8" value="2"><span class="opt-label">做過 MRI（核磁共振）</span></label>
         </div>
       </div>
-
       <div class="q-card">
         <span class="q-tag tag-hist">確診病況</span>
         <p class="q-text">醫師是否曾告知你有以下診斷？（可複選）</p>
@@ -718,13 +291,11 @@ body {
       </div>
     </div>
 
-    <!-- 過去治療史 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon s-coral">💉</div>
         <h3>過去處理方式</h3>
       </div>
-
       <div class="q-card">
         <span class="q-tag tag-tx">曾嘗試的方法</span>
         <p class="q-text">你過去是否接受過以下任何方式？（可複選）</p>
@@ -738,7 +309,6 @@ body {
           <label class="opt"><input type="checkbox" name="q10" value="chiro"><span class="opt-label">整脊 / 徒手治療 / 國術館</span></label>
         </div>
       </div>
-
       <div class="q-card">
         <span class="q-tag tag-tx">處理後的效果</span>
         <p class="q-text">過去這些方式的效果如何？</p>
@@ -750,7 +320,6 @@ body {
           <label class="opt"><input type="radio" name="q11" value="3"><span class="opt-label">完全沒有效果或治療後更不舒服</span></label>
         </div>
       </div>
-
       <div class="q-card">
         <span class="q-tag tag-hist">工作與生活型態</span>
         <p class="q-text">你平常的狀態最接近哪一種？</p>
@@ -768,46 +337,18 @@ body {
     </div>
   </div>
 
-  <!-- ===== RESULT PAGE ===== -->
   <div id="result-page">
-
     <div class="result-hero">
-      <div class="ring-wrap">
-        <svg viewBox="0 0 100 100">
-          <circle class="ring-bg" cx="50" cy="50" r="40"/>
-          <circle class="ring-fg" id="ring-fg" cx="50" cy="50" r="40" stroke-dasharray="251" stroke-dashoffset="251"/>
-        </svg>
-        <div class="ring-center">
-          <div class="ring-num" id="ring-num">0</div>
-          <div class="ring-max">分</div>
-        </div>
-      </div>
       <div id="risk-pill" class="risk-pill"></div>
       <div class="result-title" id="result-title"></div>
       <p class="result-desc" id="result-desc"></p>
     </div>
 
     <div class="domains">
-      <div class="domain-card">
-        <div class="domain-label">疼痛程度</div>
-        <div class="domain-bar-bg"><div class="domain-bar-fill" id="d1" style="background:#378ADD;width:0%"></div></div>
-        <div class="domain-pct" id="d1p" style="color:#185fa5"></div>
-      </div>
-      <div class="domain-card">
-        <div class="domain-label">功能影響</div>
-        <div class="domain-bar-bg"><div class="domain-bar-fill" id="d2" style="background:#EF9F27;width:0%"></div></div>
-        <div class="domain-pct" id="d2p" style="color:#854f0b"></div>
-      </div>
-      <div class="domain-card">
-        <div class="domain-label">神經症狀</div>
-        <div class="domain-bar-bg"><div class="domain-bar-fill" id="d3" style="background:#1D9E75;width:0%"></div></div>
-        <div class="domain-pct" id="d3p" style="color:#0f6e56"></div>
-      </div>
-      <div class="domain-card">
-        <div class="domain-label">治療反應</div>
-        <div class="domain-bar-bg"><div class="domain-bar-fill" id="d4" style="background:#7F77DD;width:0%"></div></div>
-        <div class="domain-pct" id="d4p" style="color:#534ab7"></div>
-      </div>
+      <div class="domain-card"><div class="domain-label">疼痛程度</div><div class="domain-bar-bg"><div class="domain-bar-fill" id="d1" style="background:#378ADD;width:0%"></div></div><div class="domain-pct" id="d1p" style="color:#185fa5"></div></div>
+      <div class="domain-card"><div class="domain-label">功能影響</div><div class="domain-bar-bg"><div class="domain-bar-fill" id="d2" style="background:#EF9F27;width:0%"></div></div><div class="domain-pct" id="d2p" style="color:#854f0b"></div></div>
+      <div class="domain-card"><div class="domain-label">神經症狀</div><div class="domain-bar-bg"><div class="domain-bar-fill" id="d3" style="background:#1D9E75;width:0%"></div></div><div class="domain-pct" id="d3p" style="color:#0f6e56"></div></div>
+      <div class="domain-card"><div class="domain-label">治療反應</div><div class="domain-bar-bg"><div class="domain-bar-fill" id="d4" style="background:#7F77DD;width:0%"></div></div><div class="domain-pct" id="d4p" style="color:#534ab7"></div></div>
     </div>
 
     <div class="checks-card">
@@ -827,14 +368,8 @@ body {
     </div>
 
     <div class="tags-card" id="tags-card" style="display:none">
-      <div id="tx-section" style="display:none">
-        <div class="tags-label">曾接受的治療</div>
-        <div class="tag-row" id="tx-tags"></div>
-      </div>
-      <div id="diag-section" style="display:none">
-        <div class="tags-label">已知診斷</div>
-        <div class="tag-row" id="diag-tags"></div>
-      </div>
+      <div id="tx-section" style="display:none"><div class="tags-label">曾接受的治療</div><div class="tag-row" id="tx-tags"></div></div>
+      <div id="diag-section" style="display:none"><div class="tags-label">已知診斷</div><div class="tag-row" id="diag-tags"></div></div>
     </div>
 
     <div class="cta-card">
@@ -858,7 +393,6 @@ body {
       </div>
     </div>
 
-    <!-- 椎間盤突出、骨刺 延伸閱讀 -->
     <div class="cta-card" style="margin-bottom:1.5rem">
       <div class="cta-header" style="background:#eef4fb">
         <h4 style="color:#185fa5">🦴 報告上寫了椎間盤突出或骨刺？</h4>
@@ -867,32 +401,15 @@ body {
       <div class="cta-body">
         <p class="cta-intro">五十歲以上的人，超過八成的 MRI 報告都會出現退化性變化。<strong style="color:#185fa5">問題從來不是椎間盤突出或骨刺存不存在，而是能不能讓它不再造成疼痛。</strong></p>
         <div class="tx-features">
-          <div class="feature">
-            <div class="feature-icon">📋</div>
-            <div class="feature-title">膨出 / 突出 / 脫出</div>
-            <div class="feature-desc">不同程度代表不同的介入時機，不是每種都需要開刀</div>
-          </div>
-          <div class="feature">
-            <div class="feature-icon">🦴</div>
-            <div class="feature-title">骨刺是自救反應</div>
-            <div class="feature-desc">身體為了穩定脊椎長出的骨刺，本身不是開刀的指標</div>
-          </div>
-          <div class="feature">
-            <div class="feature-icon">⚠️</div>
-            <div class="feature-title">常見誤診</div>
-            <div class="feature-desc">手麻被當腕隧道、骨刺被說要開刀——很多人走了冤枉路</div>
-          </div>
-          <div class="feature">
-            <div class="feature-icon">🔄</div>
-            <div class="feature-title">筋膜沾黏才是關鍵</div>
-            <div class="feature-desc">影像「不嚴重」卻很痛，往往是神經周圍的沾黏在作怪</div>
-          </div>
+          <div class="feature"><div class="feature-icon">📋</div><div class="feature-title">膨出 / 突出 / 脫出</div><div class="feature-desc">不同程度代表不同的介入時機，不是每種都需要開刀</div></div>
+          <div class="feature"><div class="feature-icon">🦴</div><div class="feature-title">骨刺是自救反應</div><div class="feature-desc">身體為了穩定脊椎長出的骨刺，本身不是開刀的指標</div></div>
+          <div class="feature"><div class="feature-icon">⚠️</div><div class="feature-title">常見誤診</div><div class="feature-desc">手麻被當腕隧道、骨刺被說要開刀——很多人走了冤枉路</div></div>
+          <div class="feature"><div class="feature-icon">🔄</div><div class="feature-title">筋膜沾黏才是關鍵</div><div class="feature-desc">影像「不嚴重」卻很痛，往往是神經周圍的沾黏在作怪</div></div>
         </div>
         <a class="btn-outline" href="https://drwutcm.blogspot.com/2026/03/blog-post_23.html" target="_blank">了解椎間盤突出、骨刺的完整說明 →</a>
       </div>
     </div>
 
-    <!-- 其他症狀引導 -->
     <div class="ai-section">
       <div class="ai-header">
         <div class="ai-icon">💬</div>
@@ -912,8 +429,9 @@ body {
       <p class="ai-desc">針刀療法不只處理脊椎問題，舉凡運動傷害、關節沾黏、肌腱炎、舊傷代償等都在治療範圍內。歡迎預約初診，由醫師直接評估。</p>
       <div class="book-row">
         <a class="book-btn" href="https://urli.ai/line/lAbNPcjs" target="_blank">💬 古亭京都堂</a>
-        <a class="book-btn" href="https://urli.ai/line/RvbBde8q"target="_blank">💬 南京京都堂</a>
+        <a class="book-btn" href="https://urli.ai/line/RvbBde8q" target="_blank">💬 南京京都堂</a>
       </div>
+      <a class="book-btn" href="https://www.facebook.com/drwingstcm" target="_blank" style="display:block;margin-top:8px;background:#f0f5ff;border-color:#c0d0ef;color:#1a56c4;">📘 追蹤 Facebook 粉專</a>
     </div>
 
     <button class="reset-btn" onclick="resetForm()">重新填寫</button>
@@ -954,8 +472,7 @@ function updateProgress() {
 document.querySelectorAll('input[type=radio]').forEach(el => {
   el.addEventListener('change', function() {
     answered[this.name] = parseInt(this.value);
-    document.querySelectorAll(`[name="${this.name}"]`).forEach(r =>
-      r.closest('.opt').classList.remove('sel-r'));
+    document.querySelectorAll('[name="' + this.name + '"]').forEach(r => r.closest('.opt').classList.remove('sel-r'));
     this.closest('.opt').classList.add('sel-r');
     updateProgress();
   });
@@ -966,13 +483,13 @@ document.querySelectorAll('input[type=checkbox]').forEach(el => {
     const grp = this.name;
     const isExcl = this.dataset.excl === 'true';
     if (isExcl && this.checked) {
-      document.querySelectorAll(`[name="${grp}"]`).forEach(c => {
+      document.querySelectorAll('[name="' + grp + '"]').forEach(c => {
         if (c !== this) { c.checked = false; c.closest('.opt').classList.remove('sel-c'); }
       });
       checked[grp] = [this.value];
     } else {
       if (this.checked) {
-        const excl = document.querySelector(`[name="${grp}"][data-excl=true]`);
+        const excl = document.querySelector('[name="' + grp + '"][data-excl=true]');
         if (excl) { excl.checked = false; excl.closest('.opt').classList.remove('sel-c'); }
         if (!checked[grp]) checked[grp] = [];
         checked[grp] = checked[grp].filter(v => v !== 'none');
@@ -1000,14 +517,13 @@ function showResult() {
   const hasDiag = checked.q9.filter(v => v !== 'none');
   const hasTx = checked.q10.filter(v => v !== 'none');
 
-  // 三個觸發每週治療的條件
   const hasDiagnosis = hasDiag.some(v => ['disc','spondy','stenosis','degen','other'].includes(v));
-  const treatmentNotSticking = (answered.q11||0) === 1; // 暫時有效但又回來
-  const chronicPain = (answered.q3||0) === 3; // 慢性超過三個月
+  const treatmentNotSticking = (answered.q11||0) === 1;
+  const chronicPain = (answered.q3||0) === 3;
   const needsWeekly = hasDiagnosis || treatmentNotSticking || chronicPain;
 
   let rC, rBg, rLabel, title, desc, checks, ctaIntro, ringStroke;
-  let freqNum, freqUnit, freqNote, freqColor, freqBg;
+  let freqNum, freqUnit, freqNote;
 
   if (redFlag) {
     rC='#A32D2D'; rBg='#FCEBEB'; rLabel='🔴 請立即就醫'; ringStroke='#E24B4A';
@@ -1016,31 +532,15 @@ function showResult() {
     checks=['立即前往骨科或神經外科急診','告知醫師排尿／排便控制困難的狀況','帶齊之前的影像報告一起就診','不要等候常規門診，應掛急診評估'];
     ctaIntro='在排除緊急神經症狀後，若慢性脊椎疼痛長期無法根治，針刀療法可作為下一步的選擇。';
     freqNum = null;
-
   } else if (needsWeekly) {
     rC='#993c1d'; rBg='#faece7'; ringStroke='#d4642a';
     rLabel = hasDiagnosis ? '🦴 已有結構性診斷' : (chronicPain ? '⏱ 慢性疼痛期' : '🔁 治療效果無法持久');
-    title = hasDiagnosis
-      ? '椎間盤／骨刺確診，現在是介入關鍵期'
-      : (chronicPain ? '慢性不適超過三個月，需要系統性處理' : '推拿按摩效果維持不住，根源尚未解決');
-    desc = hasDiagnosis
-      ? '影像已確認結構性問題，代表沾黏與壓迫已經存在。這個階段持續累積只會讓症狀更難逆轉——每週針刀能有效打斷沾黏循環，是目前最直接的介入方式。'
-      : (chronicPain
-        ? '超過三個月的慢性不適代表身體已進入代償模式，單靠休息或偶爾保養很難真正改變。每週系統性的針刀治療，才能逐步鬆解深層沾黏、重建正常的神經滑動空間。'
-        : '按摩推拿只能放鬆表層肌肉，無法處理深層筋膜沾黏。效果維持不住是因為根源還在——針刀直接鬆解沾黏點，才能讓改善真正持久。');
-    checks=[
-      '建議本週安排初診評估',
-      '依醫師評估制定每週治療計畫',
-      '治療 6 次後由醫師評估療效與後續方向',
-      surgeryDone ? '術後沾黏需告知醫師，針對術後組織進行評估' : '攜帶影像報告，讓醫師確認主要病灶位置'
-    ];
-    ctaIntro = hasDiagnosis
-      ? `確診${hasDiag.map(d=>diagMap[d]||d).join('、')}後，每週一次針刀是目前最有效的保守治療選擇。治療 6 次後評估效果，多數患者在這個階段已能感受到明顯改善。`
-      : '每週一次針刀治療，系統性處理深層沾黏——治療 6 次後評估效果，讓醫師根據你的恢復狀況調整後續方向。';
+    title = hasDiagnosis ? '椎間盤／骨刺確診，現在是介入關鍵期' : (chronicPain ? '慢性不適超過三個月，需要系統性處理' : '推拿按摩效果維持不住，根源尚未解決');
+    desc = hasDiagnosis ? '影像已確認結構性問題，代表沾黏與壓迫已經存在。這個階段持續累積只會讓症狀更難逆轉——每週針刀能有效打斷沾黏循環，是目前最直接的介入方式。' : (chronicPain ? '超過三個月的慢性不適代表身體已進入代償模式，單靠休息或偶爾保養很難真正改變。每週系統性的針刀治療，才能逐步鬆解深層沾黏、重建正常的神經滑動空間。' : '按摩推拿只能放鬆表層肌肉，無法處理深層筋膜沾黏。效果維持不住是因為根源還在——針刀直接鬆解沾黏點，才能讓改善真正持久。');
+    checks=['建議本週安排初診評估','依醫師評估制定每週治療計畫','治療 6 次後由醫師評估療效與後續方向', surgeryDone ? '術後沾黏需告知醫師，針對術後組織進行評估' : '攜帶影像報告，讓醫師確認主要病灶位置'];
+    ctaIntro = hasDiagnosis ? '確診' + hasDiag.map(d=>diagMap[d]||d).join('、') + '後，每週一次針刀是目前最有效的保守治療選擇。治療 6 次後評估效果，多數患者在這個階段已能感受到明顯改善。' : '每週一次針刀治療，系統性處理深層沾黏——治療 6 次後評估效果，讓醫師根據你的恢復狀況調整後續方向。';
     freqNum = '每週'; freqUnit = '一次';
     freqNote = '連續治療 6 次後，由醫師評估療效與後續方向';
-    freqColor = '#993c1d'; freqBg = '#faece7';
-
   } else if (total <= 4) {
     rC='#0F6E56'; rBg='#E1F5EE'; rLabel='🟢 預防保養期'; ringStroke='#1D9E75';
     title='目前狀況良好，建議預防性保養';
@@ -1049,8 +549,6 @@ function showResult() {
     ctaIntro='脊椎保養不用等到痛了才開始。每月一次針刀療法有效預防筋膜沾黏，維持頸椎與腰椎活動度。治療 6 次後評估狀況，依需求調整頻率。';
     freqNum = '每月'; freqUnit = '一次';
     freqNote = '連續治療 6 次後，由醫師評估是否需要調整頻率';
-    freqColor = '#0F6E56'; freqBg = '#E1F5EE';
-
   } else {
     rC='#854F0B'; rBg='#FAEEDA'; rLabel='🟡 積極保養期'; ringStroke='#EF9F27';
     title='已有輕中度不適，建議積極保養';
@@ -1059,26 +557,19 @@ function showResult() {
     ctaIntro='你的狀況適合以每月一次針刀療法作為保養頻率。治療 6 次後由醫師評估效果，若症狀持續或加重，可調整為每週介入。';
     freqNum = '每月'; freqUnit = '一次';
     freqNote = '連續治療 6 次後，由醫師評估療效與後續方向';
-    freqColor = '#854F0B'; freqBg = '#FAEEDA';
   }
-
-  document.getElementById('ring-num').textContent = total;
-  const ring = document.getElementById('ring-fg');
-  ring.style.stroke = ringStroke;
-  setTimeout(() => { ring.style.strokeDashoffset = 251 - Math.round(251 * Math.min(total,28)/28); }, 100);
 
   const pill = document.getElementById('risk-pill');
   pill.textContent = rLabel;
-  pill.style.cssText = `background:${rBg};color:${rC};display:inline-block;padding:5px 16px;border-radius:20px;font-size:13px;font-weight:500;margin-bottom:.6rem`;
+  pill.style.cssText = 'background:' + rBg + ';color:' + rC + ';display:inline-block;padding:5px 16px;border-radius:20px;font-size:13px;font-weight:500;margin-bottom:.6rem';
 
   document.getElementById('result-title').textContent = title;
   document.getElementById('result-desc').textContent = desc;
   document.getElementById('cta-intro').textContent = ctaIntro;
   document.getElementById('checks').innerHTML = checks.map(c =>
-    `<div class="check-row"><div class="check-dot" style="background:${rC}"></div><span>${c}</span></div>`
+    '<div class="check-row"><div class="check-dot" style="background:' + rC + '"></div><span>' + c + '</span></div>'
   ).join('');
 
-  // 治療頻率卡片
   const freqCard = document.getElementById('freq-card');
   if (freqNum) {
     freqCard.style.display = 'block';
@@ -1106,11 +597,11 @@ function showResult() {
     tagsCard.style.display = 'block';
     if (txList.length) {
       document.getElementById('tx-section').style.display = 'block';
-      document.getElementById('tx-tags').innerHTML = txList.map(v => `<span class="tag-tx">${txMap[v]||v}</span>`).join('');
+      document.getElementById('tx-tags').innerHTML = txList.map(v => '<span class="tag-tx">' + (txMap[v]||v) + '</span>').join('');
     }
     if (diagList.length) {
       document.getElementById('diag-section').style.display = 'block';
-      document.getElementById('diag-tags').innerHTML = diagList.map(v => `<span class="tag-diag">${diagMap[v]||v}</span>`).join('');
+      document.getElementById('diag-tags').innerHTML = diagList.map(v => '<span class="tag-diag">' + (diagMap[v]||v) + '</span>').join('');
     }
   }
 
