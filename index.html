@@ -3,10 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
 <title>身體負擔自評表單｜吳文誠醫師</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
+  color-scheme: light;
   --green-dark: #c9697a;
   --green-mid: #d4808f;
   --green-light: #e8a0ac;
@@ -33,7 +36,107 @@
   --radius-sm: 8px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.7; font-size: 16px; }
+html { background-color: #fff8f9 !important; color-scheme: light; }
+body { font-family: 'Noto Sans TC', sans-serif; background-color: #fff8f9 !important; color: #1a1a1a !important; min-height: 100vh; line-height: 1.7; font-size: 16px; -webkit-text-fill-color: initial; }
+
+/* ==================================================
+   BRUTE-FORCE DARK MODE OVERRIDE
+   Some in-app WebViews ignore color-scheme and forcibly
+   dark-mode the page. These rules hard-code every
+   critical surface back to the original light design.
+   ================================================== */
+@media (prefers-color-scheme: dark) {
+  :root { color-scheme: light !important; }
+  html, body { background-color: #fff8f9 !important; color: #1a1a1a !important; }
+  .site-header { background-color: #fff0f2 !important; }
+  .site-header h1 { color: #c9697a !important; }
+  .progress-pct { color: #8b3a47 !important; }
+  .hero h2 { color: #1a1a1a !important; }
+  .hero p { color: #5a6470 !important; }
+  .hero-badge { background-color: #fdeef0 !important; color: #d4808f !important; }
+  .hero .doctor-note { color: #8a9199 !important; }
+  .hero .doctor-note strong { color: #c9697a !important; }
+  .disclaimer { background-color: #fffbf0 !important; color: #92400e !important; }
+  .section-header h3 { color: #1a1a1a !important; }
+  .s-blue   { background-color: #e6f1fb !important; color: #185fa5 !important; }
+  .s-amber  { background-color: #faeeda !important; color: #854f0b !important; }
+  .s-teal   { background-color: #fdeef0 !important; color: #d4808f !important; }
+  .s-purple { background-color: #eeedfe !important; color: #534ab7 !important; }
+  .s-coral  { background-color: #faece7 !important; color: #993c1d !important; }
+  .q-card { background-color: #ffffff !important; color: #1a1a1a !important; }
+  .q-tag.tag-pain  { background-color: #faece7 !important; color: #993c1d !important; }
+  .q-tag.tag-func  { background-color: #e6f1fb !important; color: #185fa5 !important; }
+  .q-tag.tag-neuro { background-color: #faeeda !important; color: #854f0b !important; }
+  .q-tag.tag-hist  { background-color: #eeedfe !important; color: #534ab7 !important; }
+  .q-tag.tag-tx    { background-color: #fdeef0 !important; color: #d4808f !important; }
+  .q-text { color: #1a1a1a !important; }
+  .opt { background-color: #ffffff !important; }
+  .opt-label { color: #1a1a1a !important; }
+  .opt-sub { color: #8a9199 !important; }
+  .opt.sel-r { background-color: #e6f1fb !important; }
+  .opt.sel-c { background-color: #fdeef0 !important; }
+  .submit-btn { background-color: #c9697a !important; color: #ffffff !important; }
+  .result-hero, .narrative-card, .pathway-card, .checks-card, .freq-card, .tags-card, .cta-card, .ai-section { background-color: #ffffff !important; color: #1a1a1a !important; }
+  .result-title { color: #1a1a1a !important; }
+  .result-desc, .narr-summary, .freq-rationale, .ai-desc { color: #5a6470 !important; }
+  .narrative-text { color: #1a1a1a !important; }
+  .narrative-text strong, .narr-summary strong { color: #c9697a !important; }
+  .narr-num, .narr-val { color: #1a1a1a !important; }
+  .narr-key { color: #8a9199 !important; }
+  .narr-flag { background-color: #fdeef0 !important; color: #c9697a !important; }
+  .progression-warning { background: #fff5f6 !important; color: #6b2a38 !important; }
+  .warning-title { color: #8b3a47 !important; }
+  .warning-body { color: #6b2a38 !important; }
+  .warning-body strong { color: #8b3a47 !important; }
+  .warning-chain { background-color: rgba(255,255,255,0.6) !important; color: #8b3a47 !important; }
+  .chain-step { background-color: #ffffff !important; color: #8b3a47 !important; }
+  .chain-step.danger { background-color: #c9697a !important; color: #ffffff !important; }
+  .pathway-header { background-color: #fff0f2 !important; }
+  .pathway-header-title { color: #8b3a47 !important; }
+  .pathway-header-sub { color: #b05060 !important; }
+  .stage-name { color: #1a1a1a !important; }
+  .stage-desc { color: #5a6470 !important; }
+  .stage-num { background-color: #f0f2f1 !important; color: #5a6470 !important; }
+  .ps-active .stage-num { background-color: #c9697a !important; color: #ffffff !important; }
+  .ps-active { background-color: #fff5f6 !important; }
+  .you-badge { background-color: #c9697a !important; color: #ffffff !important; }
+  .pathway-needle { background: #fff5f6 !important; }
+  .needle-text { color: #8b3a47 !important; }
+  .domain-card { background-color: #ffffff !important; }
+  .domain-label { color: #8a9199 !important; }
+  .domain-bar-bg { background-color: #eef0f2 !important; }
+  .checks-title { color: #1a1a1a !important; }
+  .check-row { color: #1a1a1a !important; }
+  .freq-label, .freq-num { color: #c9697a !important; }
+  .freq-note { color: #8a9199 !important; }
+  .tag-tx-pill { background-color: #faeeda !important; color: #854f0b !important; }
+  .tag-diag-pill { background-color: #faece7 !important; color: #993c1d !important; }
+  .cta-header { background-color: #f5c8ce !important; }
+  .cta-header h4 { color: #8b3a47 !important; }
+  .cta-header p { color: #b05060 !important; }
+  .cta-intro { color: #5a6470 !important; }
+  .highlight-box { background-color: #fff5f6 !important; }
+  .highlight-box strong { color: #8b3a47 !important; }
+  .highlight-box p { color: #c9697a !important; }
+  .feature { background-color: #f7f9f8 !important; }
+  .feature-title { color: #1a1a1a !important; }
+  .feature-desc { color: #8a9199 !important; }
+  .btn-main { background-color: #c9697a !important; color: #ffffff !important; }
+  .btn-outline, .book-btn { background-color: transparent !important; color: #c9697a !important; }
+  .reset-btn { color: #8a9199 !important; }
+  .ai-icon { background-color: #fdeef0 !important; }
+  .ai-title { color: #1a1a1a !important; }
+  .ai-subtitle { color: #8a9199 !important; }
+  .ai-example-tag { background-color: #fff5f6 !important; color: #c9697a !important; }
+  .tags-label { color: #8a9199 !important; }
+  .edu-figure { background-color: #ffffff !important; }
+  .edu-figure figcaption { background-color: #fafafa !important; color: #8a9199 !important; }
+  .progression-warning .edu-figure figcaption,
+  .highlight-box .edu-figure figcaption { background-color: rgba(255,255,255,0.65) !important; color: #8b3a47 !important; }
+  .site-footer { color: #8a9199 !important; }
+  .site-footer .footer-doctor { color: #5a6470 !important; }
+  .site-footer .footer-doctor-sub { color: #8a9199 !important; }
+}
 .site-header { background: #fff0f2; border-bottom: 1px solid #f5c8ce; padding: 1rem 1.5rem; display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 100; }
 .site-header .logo { width: 36px; height: 36px; background: #f5c8ce; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
 .site-header h1 { font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 500; color: #c9697a; letter-spacing: .05em; }
@@ -387,6 +490,21 @@ body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: va
 .site-footer .footer-doctor { font-size: 13.5px; color: var(--text-muted); margin-bottom: .75rem; font-weight: 500; }
 .site-footer .footer-doctor-sub { font-size: 12.5px; color: var(--text-light); margin-bottom: 1rem; }
 
+@media (max-width: 600px) {
+  .freq-card { border-left-width: 4px; padding: 1.1rem 1.2rem; }
+  .freq-inner { flex-direction: column; gap: .85rem; align-items: stretch; }
+  .freq-left {
+    border-right: none;
+    border-bottom: 0.5px solid var(--border);
+    padding-right: 0;
+    padding-bottom: .85rem;
+    width: 100%;
+  }
+  .freq-label { font-size: 12.5px; margin-bottom: .45rem; }
+  .freq-num { font-size: 20px; white-space: normal; }
+  .freq-note { font-size: 13px; margin-top: .5rem; }
+  .freq-rationale { font-size: 14px; line-height: 1.85; }
+}
 @media (max-width: 480px) {
   body { font-size: 15px; }
   .hero h2 { font-size: 25px; }
