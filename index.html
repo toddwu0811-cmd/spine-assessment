@@ -360,7 +360,63 @@ body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: va
   .opt-sub { font-size: 12.5px; }
   .warning-chain { font-size: 12.5px; gap: 6px; padding: .65rem .75rem; }
   .chain-step { padding: 3px 8px; font-size: 12px; }
+}/* ── Print-only elements (hidden on screen) ── */
+.print-only { display: none; }
+.download-pdf-btn { background: #fff; color: #c9697a; border: 1px solid #e8a0ac; padding: 8px 18px; font-size: 13.5px; font-family: inherit; border-radius: var(--radius-sm); cursor: pointer; letter-spacing: .05em; transition: background .15s; margin-left: 10px; }
+.download-pdf-btn:hover { background: #fdeef0; }
+
+/* ── Print / PDF styles ── */
+@media print {
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+  @page { size: A4; margin: 1.2cm 1.4cm; }
+  html, body { background: #fff !important; font-size: 10.5pt; }
+  body, .page { padding: 0 !important; margin: 0 !important; max-width: none !important; }
+
+  /* Hide screen-only elements */
+  .site-header, .hero, .progress-container, #form-page, .reset-btn, .download-pdf-btn,
+  .contact-capture, .book-row, .book-btn, .tx-intro .btn-main, .tx-intro .btn-outline,
+  .site-footer, .ai-examples { display: none !important; }
+  .ai-section { border: none !important; padding: 0 !important; margin-top: 1rem !important; background: transparent !important; }
+  .ai-header { margin-bottom: .5rem !important; }
+  .ai-icon { display: none !important; }
+  .ai-desc { font-size: 10pt; color: #555 !important; }
+
+  /* Show print-only elements */
+  .print-only { display: block !important; }
+
+  /* Print header */
+  .print-header { border-bottom: 2px solid #c9697a; padding-bottom: .6rem; margin-bottom: 1rem; }
+  .print-header-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: .35rem; }
+  .print-header-title { font-family: 'Noto Serif TC', serif; font-size: 15pt; font-weight: 500; color: #c9697a; letter-spacing: .05em; }
+  .print-header-date { font-size: 10pt; color: #666; }
+  .print-header-meta { display: flex; gap: 2rem; font-size: 10.5pt; color: #333; padding-top: .35rem; border-top: 1px dashed #f0c4cb; }
+  .print-header-meta .label { color: #999; margin-right: .3rem; }
+
+  /* Print footer */
+  .print-footer { border-top: 1px solid #e0e0e0; padding-top: .5rem; margin-top: 1rem; font-size: 9pt; color: #888; text-align: center; line-height: 1.7; }
+  .print-footer .clinic { color: #c9697a; font-weight: 500; font-size: 10pt; margin-bottom: .2rem; }
+
+  /* Avoid page breaks inside key blocks */
+  .result-hero, .narrative-card, .warning-card, .pathway-container, .freq-card,
+  .checks-card, .tx-intro-card, .tags-card { page-break-inside: avoid; break-inside: avoid; }
+  .result-hero { page-break-after: avoid; break-after: avoid; }
+  .narrative-card { margin-bottom: .8rem; }
+  .pathway-container .pathway-needle { page-break-inside: avoid; }
+
+  /* Tighten spacing for print */
+  .result-hero { padding: 1.2rem !important; margin-bottom: .7rem !important; }
+  .narrative-card, .warning-card, .pathway-container, .freq-card, .checks-card,
+  .tx-intro-card, .tags-card, .domains { margin-top: .7rem !important; }
+  .risk-pill { font-size: 11pt !important; }
+  .result-title { font-size: 14pt !important; }
+  .narrative-text { font-size: 10.5pt !important; line-height: 1.75 !important; }
+  .domains { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
+  .tx-features { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
+
+  /* Force links to show their URL-free appearance in PDF */
+  a { color: inherit !important; text-decoration: none !important; }
 }
+
 </style>
 </head>
 <body>
@@ -565,6 +621,18 @@ body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: va
   <!-- ===== RESULT PAGE ===== -->
   <div id="result-page">
 
+    <!-- Print-only header (shown only when printing to PDF) -->
+    <div class="print-only print-header">
+      <div class="print-header-top">
+        <div class="print-header-title">吳文誠醫師｜疼痛自評報告</div>
+        <div class="print-header-date" id="print-date">—</div>
+      </div>
+      <div class="print-header-meta">
+        <div><span class="label">姓名</span><span id="print-name">—</span></div>
+        <div><span class="label">電話</span><span id="print-phone">—</span></div>
+      </div>
+    </div>
+
     <!-- 1. Risk level -->
     <div class="result-hero">
       <div id="risk-pill" class="risk-pill"></div>
@@ -710,11 +778,19 @@ body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: va
         <a class="book-btn" href="https://urli.ai/line/lAbNPcjs" target="_blank">💬 古亭京都堂</a>
         <a class="book-btn" href="https://urli.ai/line/RvbBde8q" target="_blank">💬 南京京都堂</a>
       </div>
-      <a class="book-btn" href="https://www.facebook.com/drwingstcm" target="_blank" style="display:block;margin-top:9px;background:#f0f5ff;border-color:#c0d0ef;color:#1a56c4;">📘 追蹤 Facebook 粉專</a>
+      <a class="book-btn" href="https://www.facebook.com/drwingstcm" target="_blank" style="display:block;margin-top:9px;background:#f0f5ff;border-color:#c0d0ef;color:#1a56c4;">📘 查看更多見證、居家保養建議</a>
+    </div>
+
+    <!-- Print-only footer -->
+    <div class="print-only print-footer">
+      <div class="clinic">吳文誠醫師 · 減重與疼痛整合治療</div>
+      <div>古亭京都堂 · 南京京都堂 · 複合式針傷療程（針刀、乾針）</div>
+      <div style="margin-top:.3rem">本報告僅供衛教參考，不構成個人醫療診斷或治療建議。實際治療請諮詢合格醫療人員。</div>
     </div>
 
     <div style="text-align:center;margin-top:1.5rem">
       <button class="reset-btn" onclick="resetForm()">重新填寫</button>
+      <button class="download-pdf-btn" onclick="downloadPDF()">📄 下載為 PDF</button>
     </div>
   </div>
 
@@ -1167,6 +1243,22 @@ function fallbackCopy(text, onSuccess) {
     alert('複製失敗，請長按下方訊息手動複製：\n\n' + text);
   }
   document.body.removeChild(ta);
+}
+
+function downloadPDF() {
+  // Populate print-only fields with name / phone / date
+  const name = document.getElementById('user-name').value.trim();
+  const phone = document.getElementById('user-phone').value.trim();
+  document.getElementById('print-name').textContent = name || '（未填寫）';
+  document.getElementById('print-phone').textContent = phone || '（未填寫）';
+
+  const now = new Date();
+  const pad = n => String(n).padStart(2, '0');
+  const dateStr = now.getFullYear() + '/' + pad(now.getMonth() + 1) + '/' + pad(now.getDate());
+  document.getElementById('print-date').textContent = '評估日期：' + dateStr;
+
+  // Trigger browser print dialog (user selects "Save as PDF")
+  setTimeout(() => window.print(), 60);
 }
 
 function resetForm() {
