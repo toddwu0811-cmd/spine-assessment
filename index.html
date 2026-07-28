@@ -384,6 +384,11 @@ box-shadow: 0 1px 4px rgba(0,0,0,.15);
 .contact-btn:hover { background: #1f4f84; }
 .contact-btn.copied { background: #1d9e75; }
 .contact-hint { font-size: 12px; color: var(--text-light); text-align: center; margin-top: .6rem; line-height: 1.65; }
+.contact-consent { display:flex; align-items:flex-start; gap:9px; margin:.8rem 0; padding:.8rem .9rem; background:#f6f9fd; border:1px solid #d9e6f5; border-radius:var(--radius-sm); font-size:13px; color:var(--text-muted); line-height:1.6; cursor:pointer; }
+.contact-consent input { margin-top:4px; width:17px; height:17px; flex-shrink:0; accent-color:#245a9a; }
+.contact-status { min-height:1.5em; margin-top:.65rem; font-size:13px; text-align:center; color:var(--text-muted); }
+.contact-status.ok { color:#157a55; }
+.contact-status.error { color:#a32d2d; }
 .site-footer { text-align: center; padding: 2.5rem 1.25rem; font-size: 12.5px; color: var(--text-light); border-top: 1px solid var(--border); margin-top: 1rem; line-height: 1.9; }
 .site-footer .footer-doctor { font-size: 13.5px; color: var(--text-muted); margin-bottom: .75rem; font-weight: 500; }
 .site-footer .footer-doctor-sub { font-size: 12.5px; color: var(--text-light); margin-bottom: 1rem; }
@@ -791,19 +796,24 @@ a { color: inherit !important; text-decoration: none !important; }
 <p class="ai-desc">針刀療法不只處理脊椎問題，舉凡運動傷害、關節沾黏、肌腱炎、舊傷代償等都在治療範圍內。體重困擾族群常有膝蓋、腰背、髖關節等多處疼痛——這些都是減重過程中可以一併處理的項目。</p>
 <div class="contact-capture">
 <div class="contact-cap-title">想預約？請先留下您的資訊</div>
-<div class="contact-cap-sub">填寫後點擊下方按鈕，系統會把您的姓名與評估結果整理成訊息——複製後貼到 LINE 送過來，我們就知道是誰了。</div>
+<div class="contact-cap-sub">填寫後送出，您的姓名、電話與本次評估摘要會直接存入門診聯繫名單，方便後續協助預約。</div>
 <div class="contact-fields">
 <div class="contact-field">
 <label>姓名 <em>*必填</em></label>
 <input type="text" id="user-name" placeholder="請輸入您的姓名" maxlength="30" autocomplete="name" />
 </div>
 <div class="contact-field">
-<label>聯絡電話（選填）</label>
-<input type="tel" id="user-phone" placeholder="0912-345-678" maxlength="20" autocomplete="tel" />
+<label>聯絡電話 <em>*必填</em></label>
+<input type="tel" id="user-phone" placeholder="0912-345-678" maxlength="20" autocomplete="tel" inputmode="tel" />
 </div>
 </div>
-<button class="contact-btn" id="copy-summary-btn" onclick="copySummary()">複製摘要訊息 → 貼到 LINE</button>
-<div class="contact-hint">複製成功後，請點下方 LINE 按鈕加入好友並將訊息貼上送出即可</div>
+<label class="contact-consent">
+<input type="checkbox" id="contact-consent" />
+<span>我同意吳文誠醫師門診團隊使用上述資料與本次自評摘要，聯繫我進行門診與預約說明。</span>
+</label>
+<button class="contact-btn" id="contact-submit-btn" onclick="submitContact()">送出資料，請協助聯繫</button>
+<div class="contact-status" id="contact-status" aria-live="polite"></div>
+<div class="contact-hint">送出後也可直接點下方 LINE 按鈕，主動聯繫京都堂門診。</div>
 </div>
 <div class="book-row">
 <a class="book-btn" href="https://urli.ai/line/lAbNPcjs" target="_blank">古亭京都堂</a>
@@ -1135,70 +1145,103 @@ document.getElementById('form-page').style.display = 'none';
 document.getElementById('result-page').style.display = 'block';
 window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-function copySummary() {
-const nameEl = document.getElementById('user-name');
-const phoneEl = document.getElementById('user-phone');
-const name = nameEl.value.trim();
-const phone = phoneEl.value.trim();
-if (!name) {
-nameEl.style.borderColor = '#245a9a';
-nameEl.style.boxShadow = '0 0 0 2px #edf5fc';
-nameEl.focus();
-setTimeout(() => { nameEl.style.borderColor = ''; nameEl.style.boxShadow = ''; }, 2500);
-return;
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyAiW4WNYgpMFoDJ8IYflIqHlRDMmNrgDw27T-3V9-Wykkm1Gs88yZ69kFiLI9LVPxV/exec';
+
+function collectContactPayload() {
+  const name = (document.getElementById('user-name')?.value || '').trim();
+  const phone = (document.getElementById('user-phone')?.value || '').trim();
+  const level = (document.getElementById('risk-pill')?.textContent || '').trim();
+  const freqNum = (document.getElementById('freq-num')?.textContent || '').trim();
+  const resultTitle = (document.getElementById('result-title')?.textContent || '').trim();
+
+  const narrativeLines = [];
+  document.querySelectorAll('#narrative-text .narr-item').forEach(item => {
+    const key = (item.querySelector('.narr-key')?.textContent || '').trim();
+    const val = (item.querySelector('.narr-val')?.textContent || '').trim();
+    const flag = (item.querySelector('.narr-flag')?.textContent || '').trim();
+    if (key && val) narrativeLines.push(key + '：' + val + (flag ? '（' + flag + '）' : ''));
+  });
+
+  const txTags = Array.from(document.querySelectorAll('#tx-tags .tag-tx-pill')).map(el => el.textContent.trim()).filter(Boolean);
+  const diagTags = Array.from(document.querySelectorAll('#diag-tags .tag-diag-pill')).map(el => el.textContent.trim()).filter(Boolean);
+  const bodyArea = narrativeLines.find(line => line.includes('部位')) || '';
+  const summaryParts = [];
+  if (resultTitle) summaryParts.push(resultTitle);
+  if (freqNum) summaryParts.push('建議頻率：' + freqNum);
+  if (diagTags.length) summaryParts.push('已知診斷：' + diagTags.join('、'));
+  if (txTags.length) summaryParts.push('曾接受治療：' + txTags.join('、'));
+  if (narrativeLines.length) summaryParts.push(narrativeLines.join('；'));
+
+  return {
+    name,
+    phone,
+    riskLevel: level,
+    bodyArea,
+    summary: summaryParts.join('｜'),
+    sourceUrl: window.location.href
+  };
 }
-// Pull computed results from DOM
-const level = (document.getElementById('risk-pill')?.textContent || '').trim();
-const freqNum = (document.getElementById('freq-num')?.textContent || '').trim();
-const resultTitle = (document.getElementById('result-title')?.textContent || '').trim();
-// Extract narrative as plain text lines
-const narrativeItems = document.querySelectorAll('#narrative-text .narr-item');
-const narrativeLines = [];
-narrativeItems.forEach(item => {
-const key = (item.querySelector('.narr-key')?.textContent || '').trim();
-const val = (item.querySelector('.narr-val')?.textContent || '').trim();
-const flag = (item.querySelector('.narr-flag')?.textContent || '').trim();
-if (key && val) {
-narrativeLines.push('・' + key + '：' + val + (flag ? '（' + flag + '）' : ''));
+
+async function submitContact() {
+  const payload = collectContactPayload();
+  const consent = document.getElementById('contact-consent');
+  const btn = document.getElementById('contact-submit-btn');
+  const status = document.getElementById('contact-status');
+  const nameEl = document.getElementById('user-name');
+  const phoneEl = document.getElementById('user-phone');
+  const normalizedPhone = payload.phone.replace(/[\s-]/g, '');
+
+  status.className = 'contact-status';
+  status.textContent = '';
+
+  if (!payload.name) {
+    status.classList.add('error');
+    status.textContent = '請先填寫姓名。';
+    nameEl?.focus();
+    return;
+  }
+  if (!/^09\d{8}$/.test(normalizedPhone)) {
+    status.classList.add('error');
+    status.textContent = '請填寫正確的手機號碼，例如 0912345678。';
+    phoneEl?.focus();
+    return;
+  }
+  if (!consent?.checked) {
+    status.classList.add('error');
+    status.textContent = '請先勾選同意聯繫。';
+    consent?.focus();
+    return;
+  }
+
+  payload.phone = normalizedPhone;
+  const originalText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = '資料送出中…';
+
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+
+    status.classList.add('ok');
+    status.textContent = '資料已送出。門診團隊將依您留下的電話協助聯繫。';
+    btn.textContent = '已送出';
+    btn.classList.add('copied');
+    nameEl.disabled = true;
+    phoneEl.disabled = true;
+    consent.disabled = true;
+  } catch (error) {
+    console.error(error);
+    status.classList.add('error');
+    status.textContent = '目前無法送出，請稍後再試，或直接使用下方 LINE 聯繫。';
+    btn.disabled = false;
+    btn.textContent = originalText;
+  }
 }
-});
-// Treatments tried / diagnosis tags
-const txTags = Array.from(document.querySelectorAll('#tx-tags .tag-tx-pill')).map(el => el.textContent.trim()).filter(Boolean);
-const diagTags = Array.from(document.querySelectorAll('#diag-tags .tag-diag-pill')).map(el => el.textContent.trim()).filter(Boolean);
-// Build message
-const lines = [];
-lines.push('吳文誠醫師｜疼痛自評結果');
-lines.push('━━━━━━━━━━━━━━━━');
-lines.push('姓名：' + name);
-if (phone) lines.push('電話：' + phone);
-lines.push('');
-if (level) lines.push('評估等級：' + level);
-if (resultTitle) lines.push('狀態摘要：' + resultTitle);
-if (freqNum) lines.push('✅ 建議頻率：' + freqNum);
-if (diagTags.length) lines.push('已知診斷：' + diagTags.join('、'));
-if (txTags.length) lines.push('曾接受治療：' + txTags.join('、'));
-if (narrativeLines.length) {
-lines.push('');
-lines.push('主要情況：');
-lines.push(...narrativeLines);
-}
-lines.push('');
-lines.push('—— 想預約由醫師親自評估，謝謝！');
-const msg = lines.join('\n');
-// Copy with fallback
-const showSuccess = () => {
-const btn = document.getElementById('copy-summary-btn');
-const orig = btn.innerHTML;
-btn.innerHTML = '✅ 已複製！請打開下方 LINE 貼上';
-btn.classList.add('copied');
-setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 3500);
-};
-if (navigator.clipboard && navigator.clipboard.writeText) {
-navigator.clipboard.writeText(msg).then(showSuccess, () => fallbackCopy(msg, showSuccess));
-} else {
-fallbackCopy(msg, showSuccess);
-}
-}
+
 function fallbackCopy(text, onSuccess) {
 const ta = document.createElement('textarea');
 ta.value = text;
@@ -1229,6 +1272,16 @@ document.getElementById('print-date').textContent = '評估日期：' + dateStr;
 setTimeout(() => window.print(), 60);
 }
 function resetForm() {
+const nameEl = document.getElementById('user-name');
+const phoneEl = document.getElementById('user-phone');
+const consentEl = document.getElementById('contact-consent');
+const contactBtn = document.getElementById('contact-submit-btn');
+const contactStatus = document.getElementById('contact-status');
+if (nameEl) { nameEl.value = ''; nameEl.disabled = false; }
+if (phoneEl) { phoneEl.value = ''; phoneEl.disabled = false; }
+if (consentEl) { consentEl.checked = false; consentEl.disabled = false; }
+if (contactBtn) { contactBtn.disabled = false; contactBtn.textContent = '送出資料，請協助聯繫'; contactBtn.classList.remove('copied'); }
+if (contactStatus) { contactStatus.textContent = ''; contactStatus.className = 'contact-status'; }
 radioQs.forEach(q => delete answered[q]);
 checked.q1 = []; checked.q6 = []; checked.q7 = []; checked.q8 = []; checked.q9 = []; checked.q10 = [];
 document.querySelectorAll('.sel-r,.sel-c').forEach(el => el.classList.remove('sel-r','sel-c'));
