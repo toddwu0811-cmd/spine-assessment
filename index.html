@@ -832,11 +832,34 @@ a { color: inherit !important; text-decoration: none !important; }
 <input type="tel" id="user-phone" placeholder="0912-345-678" maxlength="20" autocomplete="tel" inputmode="tel" />
 </div>
 </div>
+<div class="contact-field" style="margin-bottom:.85rem;">
+<label>手上有沒有影像檢查？</label>
+<select id="user-imaging" style="width:100%;padding:10px 12px;font-size:14.5px;font-family:inherit;color:var(--text);border:1px solid var(--border);border-radius:var(--radius-sm);background:#fff;box-sizing:border-box;">
+<option value="">請選擇</option>
+<option value="有 MRI">有 MRI</option>
+<option value="有 X 光">有 X 光</option>
+<option value="MRI 和 X 光都有">MRI 和 X 光都有</option>
+<option value="都沒有">都沒有</option>
+<option value="不確定">不確定</option>
+</select>
+</div>
+<div class="contact-field" style="margin-bottom:.85rem;">
+<label>希望的看診時段 <em>可先不選</em></label>
+<select id="user-slot" style="width:100%;padding:10px 12px;font-size:14.5px;font-family:inherit;color:var(--text);border:1px solid var(--border);border-radius:var(--radius-sm);background:#fff;box-sizing:border-box;">
+<option value="">再聯繫我安排就好</option>
+<option value="南京京都堂 週二 13:30-21:00">南京京都堂　週二 13:30–21:00</option>
+<option value="南京京都堂 週四 13:30-21:00">南京京都堂　週四 13:30–21:00</option>
+<option value="南京京都堂 週五 13:30-21:00">南京京都堂　週五 13:30–21:00</option>
+<option value="古亭京都堂 週三 13:30-21:00">古亭京都堂　週三 13:30–21:00</option>
+<option value="古亭京都堂 週六 09:30-17:00">古亭京都堂　週六 09:30–17:00</option>
+<option value="都可以">都可以，看哪個時段有空位</option>
+</select>
+</div>
 <label class="contact-consent">
 <input type="checkbox" id="contact-consent" />
 <span>我同意吳文誠醫師門診團隊使用上述資料與本次自評摘要，聯繫我進行門診與預約說明。</span>
 </label>
-<button class="contact-btn" id="contact-submit-btn" onclick="submitContact()">送出資料，請協助聯繫</button>
+<button class="contact-btn" id="contact-submit-btn" onclick="submitContact()">送出，我想預約門診</button>
 <div class="contact-status" id="contact-status" aria-live="polite"></div>
 <div class="contact-hint">送出後也可直接點下方 LINE 按鈕，主動聯繫京都堂門診。</div>
 </div>
@@ -1185,6 +1208,8 @@ const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyAiW4WNYgpMFoD
 function collectContactPayload() {
   const name = (document.getElementById('user-name')?.value || '').trim();
   const phone = (document.getElementById('user-phone')?.value || '').trim();
+  const imaging = (document.getElementById('user-imaging')?.value || '').trim();
+  const slot = (document.getElementById('user-slot')?.value || '').trim();
   const level = (document.getElementById('risk-pill')?.textContent || '').trim();
   const freqNum = (document.getElementById('freq-num')?.textContent || '').trim();
   const resultTitle = (document.getElementById('result-title')?.textContent || '').trim();
@@ -1210,6 +1235,8 @@ function collectContactPayload() {
   return {
     name,
     phone,
+    imaging,
+    slot,
     riskLevel: level,
     bodyArea,
     summary: summaryParts.join('｜'),
@@ -1262,12 +1289,16 @@ async function submitContact() {
     });
 
     status.classList.add('ok');
-    status.textContent = '資料已送出。門診團隊將依您留下的電話協助聯繫。';
+    status.textContent = '已收到，門診團隊會盡快與您聯繫確認時段。';
     btn.textContent = '已送出';
     btn.classList.add('copied');
     nameEl.disabled = true;
     phoneEl.disabled = true;
     consent.disabled = true;
+    const imgEl = document.getElementById('user-imaging');
+    const sltEl = document.getElementById('user-slot');
+    if (imgEl) imgEl.disabled = true;
+    if (sltEl) sltEl.disabled = true;
   } catch (error) {
     console.error(error);
     status.classList.add('error');
@@ -1315,7 +1346,11 @@ const contactStatus = document.getElementById('contact-status');
 if (nameEl) { nameEl.value = ''; nameEl.disabled = false; }
 if (phoneEl) { phoneEl.value = ''; phoneEl.disabled = false; }
 if (consentEl) { consentEl.checked = false; consentEl.disabled = false; }
-if (contactBtn) { contactBtn.disabled = false; contactBtn.textContent = '送出資料，請協助聯繫'; contactBtn.classList.remove('copied'); }
+const imagingEl = document.getElementById('user-imaging');
+const slotEl = document.getElementById('user-slot');
+if (imagingEl) { imagingEl.value = ''; imagingEl.disabled = false; }
+if (slotEl) { slotEl.value = ''; slotEl.disabled = false; }
+if (contactBtn) { contactBtn.disabled = false; contactBtn.textContent = '送出，我想預約門診'; contactBtn.classList.remove('copied'); }
 if (contactStatus) { contactStatus.textContent = ''; contactStatus.className = 'contact-status'; }
 radioQs.forEach(q => delete answered[q]);
 checked.q1 = []; checked.q6 = []; checked.q7 = []; checked.q8 = []; checked.q9 = []; checked.q10 = [];
